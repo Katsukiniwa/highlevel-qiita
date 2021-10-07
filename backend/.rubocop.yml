@@ -1,0 +1,50 @@
+# @link https://github.com/SonicGarden/sgcop/blob/master/ruby/rubocop.yml
+require:
+  - rubocop-rails
+
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  NewCops: disable
+  Exclude:
+  - 'spec/**/*'
+  - 'config/**/*'
+  - 'db/**/*'
+  - 'app/views/**/*'
+  - 'config/**/*'
+  - 'bin/*'
+  - 'Rakefile'
+  - 'node_modules/**/*'
+  - 'vendor/**/*'
+
+# 日本語コメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+# 条件式の方を意識させたい場合には後置の if/unless を使わない方が分かりやすい
+Style/IfUnlessModifier:
+  Enabled: false
+
+# 30 ぐらいまでは許容してもいいのでは
+Metrics/AbcSize:
+  Max: 20
+
+# 20くらいは別によいと思う
+Metrics/MethodLength:
+  Max: 20
+
+# 複数行にわたるメソッド呼び出しを行う場合は最初の引数の前に改行を入れる
+# * 横に長くなりづらい
+# * メソッド名の長さが変わったときに diff が少ない
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+# 80では短すぎる。かといって長すぎてもgithub上のコードレビューがやり辛いし、無駄に長過ぎるよりも意味のある単位で区切られているほうがリーダブルなので。
+Layout/LineLength:
+  Max: 160
