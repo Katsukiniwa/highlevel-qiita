@@ -1,0 +1,54 @@
+@startuml
+
+!define MAIN_ENTITY #E2EFDA-C6E0B4
+!define MAIN_ENTITY_2 #FCE4D6-F8CBAD
+!define MASTER_MARK_COLOR AAFFAA
+!define TRANSACTION_MARK_COLOR FFAA00
+
+package "開発対象システム" as target_system {
+  entity "リプライ" as reply {
+    + コメントID [PK]
+    --
+    # 解答者ID(ユーザID) [FK]
+    # コメントID [FK]
+  }
+
+  entity "コメント" as comment {
+    + コメントID [PK]
+    --
+    # 解答者ID(ユーザID) [FK]
+    # 質問ID [FK]
+  }
+
+  entity "解答" as answer {
+    + 解答ID [PK]
+    --
+    # 解答者ID(ユーザID) [FK]
+    # 質問ID [FK]
+    # 本文
+  }
+
+  entity "質問" as question <<T,TRANSACTION_MARK_COLOR>> MAIN_ENTITY_2 {
+    + 質問ID   [PK]
+    --
+    # 質問者ID(ユーザID) [FK]
+    タイトル
+    本文
+    タグ
+  }
+
+  entity "ユーザ" as user <<M,MASTER_MARK_COLOR>> MAIN_ENTITY {
+    + ユーザID [PK]
+    --
+    ユーザ名
+    パスワード
+    アイコン
+  }
+}
+
+user          ||-ri-|{     question
+question      ||-ri-|{     answer
+answer        ||-ri-|{     comment
+comment       ||-ri-|{     reply
+
+@enduml
