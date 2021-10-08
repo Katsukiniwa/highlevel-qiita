@@ -16,6 +16,7 @@ AllCops:
   - 'Rakefile'
   - 'node_modules/**/*'
   - 'vendor/**/*'
+  - 'Gemfile'
 
 # 日本語コメントを許可
 Style/AsciiComments:
