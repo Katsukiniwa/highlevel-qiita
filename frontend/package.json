@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "build-storybook": "build-storybook",
+    "dev": "next dev",
     "lint": "next lint",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "start": "next start",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "axios": "^0.22.0",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-markdown": "^7.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -26,6 +27,7 @@
     "@types/eslint": "7.28.0",
     "@types/react": "17.0.27",
     "@types/react-dom": "17.0.2",
+    "@types/sass": "^1.16.1",
     "autoprefixer": "^10.3.7",
     "babel-loader": "^8.2.2",
     "eslint": "7.32.0",
