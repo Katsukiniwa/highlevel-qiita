@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      const { worker } = require('../mocks/browsers')
+      const { worker } = require('../../mocks/browsers')
       worker.start()
     }
     async function fetchData() {
