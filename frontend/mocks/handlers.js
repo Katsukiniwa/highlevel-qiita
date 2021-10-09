@@ -1,7 +1,9 @@
 // src/mocks/handlers.js
 import { rest } from 'msw';
 
-const novels = [...Array(20)].map((_, index) => ({ id: `00${index}`, title: `sample 00${index}` }));
+const novels = [...Array(12)].map((_, index) => ({ id: `00${index}`, title: `sample 00${index}` }));
+
+const latestNovels = [...Array(4)].map((_, index) => ({ id: `00${index}`, title: `sample 00${index}` }));
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
@@ -19,6 +21,10 @@ export const handlers = [
 
   rest.get('/novels', (req, res, ctx) => res(
     ctx.json(novels),
+  )),
+
+  rest.get('/novels/latest', (req, res, ctx) => res(
+    ctx.json(latestNovels),
   )),
 
   rest.get('/users/1', (req, res, ctx) => res(
