@@ -10,18 +10,17 @@ export const useLogin = (params: { username: string; password: string }) => {
   useEffect(() => {
     const runLogin = async () => {
       dispatch(actions.startLoginAction(params));
-      
-      axios.post('/login', params)
-        .then((response) => {
-          dispatch(actions.successLoginAction())
-        })
-        .catch((error) => {
-          if (error instanceof Error) {
-            dispatch(actions.failLoginAction(error))
-          } else {
-            throw new Error(error)
-          }
-        });
+
+      try {
+        await axios.post('/login', params)
+        dispatch(actions.successLoginAction())
+      } catch (error) {
+        if (error instanceof Error) {
+          dispatch(actions.failLoginAction(error))
+        } else {
+          throw error
+        }
+      }
     };
 
     runLogin();
