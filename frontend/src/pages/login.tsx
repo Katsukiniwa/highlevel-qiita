@@ -1,26 +1,29 @@
 import type { ReactElement } from 'react'
 import BaseLayout from '../components/layouts/BaseLayout'
-import React from "react";
+import React from "react"
+import Head from 'next/head'
 import { useForm, SubmitHandler } from "react-hook-form";
-
-enum GenderEnum {
-  female = "female",
-  male = "male",
-  other = "other"
-}
 
 interface IFormInput {
   username: String;
   password: String;
-  gender: GenderEnum;
 }
 
 export default function Login() {
   const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
+
+  const onSubmit: SubmitHandler<IFormInput> = data => {
+    console.log(data)
+  };
 
   return (
     <React.Fragment>
+      <Head>
+        <title>ログイン</title>
+        <meta name="description" content="ログイン" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="w-1/2 mx-auto p-8">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
