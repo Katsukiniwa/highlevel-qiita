@@ -1,6 +1,7 @@
 # @link https://github.com/SonicGarden/sgcop/blob/master/ruby/rubocop.yml
 require:
   - rubocop-rails
+  - rubocop-performance
 
 AllCops:
   DisplayCopNames: true
