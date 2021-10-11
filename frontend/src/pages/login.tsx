@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import BaseLayout from '../components/layouts/BaseLayout'
 import React from "react"
 import Head from 'next/head'
@@ -11,6 +11,15 @@ interface IFormInput {
 
 export default function Login() {
   const { register, handleSubmit } = useForm<IFormInput>();
+  const [time, setTime] = useState(0);
+
+  // クリーンアップ関数を登録（return）する
+  useEffect(() => {
+    const timerId = setInterval(() => setTime(time + 1), 1000);
+    return () => clearInterval(timerId);
+  });
+
+
 
   const onSubmit: SubmitHandler<IFormInput> = data => {
     console.log(data)
@@ -25,6 +34,7 @@ export default function Login() {
       </Head>
 
       <div className="w-1/2 mx-auto p-8">
+        <div>{time}</div>
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={handleSubmit(onSubmit)}
