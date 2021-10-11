@@ -7,6 +7,7 @@
     "build-storybook": "build-storybook",
     "dev": "next dev",
     "lint": "next lint",
+    "prepare": "cd .. && husky install frontend/.husky",
     "start": "next start",
     "storybook": "start-storybook -p 6006",
     "test": "jest",
@@ -48,8 +49,7 @@
   },
   "lint-staged": {
     "*.@(ts|tsx)": [
-      "npm run lint",
-      "npm run format"
+      "npm run lint"
     ]
   },
   "msw": {
