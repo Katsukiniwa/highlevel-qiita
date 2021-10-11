@@ -3,26 +3,18 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import React from "react"
 import Head from 'next/head'
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useLogin } from '../module/authentication/login/hooks/useLogin';
 
 interface IFormInput {
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 }
 
 export default function Login() {
   const { register, handleSubmit } = useForm<IFormInput>();
-  const [time, setTime] = useState(0);
 
-  // クリーンアップ関数を登録（return）する
-  useEffect(() => {
-    const timerId = setInterval(() => setTime(time + 1), 1000);
-    return () => clearInterval(timerId);
-  });
-
-
-
-  const onSubmit: SubmitHandler<IFormInput> = data => {
-    console.log(data)
+  const useSubmit: SubmitHandler<IFormInput> = (data) => {
+    useLogin(data)
   };
 
   return (
@@ -34,10 +26,9 @@ export default function Login() {
       </Head>
 
       <div className="w-1/2 mx-auto p-8">
-        <div>{time}</div>
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(useSubmit)}
         >
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
