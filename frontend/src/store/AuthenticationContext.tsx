@@ -4,8 +4,10 @@ import { logoutReducer, LogoutActionType } from "../module/authentication/logout
 
 export const AuthenticationContext = createContext({ isLoading: false, login: false })
 
-export const LoginContext = createContext<Dispatch<LoginActionType> | null>(null)
-export const LogoutContext = createContext<Dispatch<LogoutActionType> | null>(null)
+//@ts-ignore
+export const LoginContext = createContext<Dispatch<LoginActionType>>(null)
+//@ts-ignore
+export const LogoutContext = createContext<Dispatch<LogoutActionType>>(null)
 
 const initialAuthenticationState = { isLoading: false, login: false }
 
