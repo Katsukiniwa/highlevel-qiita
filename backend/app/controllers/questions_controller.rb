@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show update destroy]
+  before_action :logged_in_user, only: %i[create update destroy]
 
   # GET /questions
   def index
