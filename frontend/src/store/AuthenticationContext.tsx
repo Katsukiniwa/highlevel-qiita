@@ -9,7 +9,7 @@ export const LoginContext = createContext<Dispatch<LoginActionType>>(null)
 //@ts-ignore
 export const LogoutContext = createContext<Dispatch<LogoutActionType>>(null)
 
-const initialAuthenticationState = { isLoading: false, login: false }
+const initialAuthenticationState = { isLoading: false, login: false, error: null }
 
 export function AuthenticationContextProvider({ children }: { children: ReactChild }) {
   const [authentication, login] = useReducer(loginReducer, initialAuthenticationState)

@@ -12,8 +12,8 @@ const successLoginAction = () => {
   return { type: SUCCESS_LOGIN, payload: true };
 };
 
-const failLoginAction = () => {
-  return { type: FAIL_LOGIN };
+const failLoginAction = (error: Error) => {
+  return { type: FAIL_LOGIN, payload: error };
 };
 
 export const actions = {
@@ -27,7 +27,7 @@ export type LoginActionType =
   | ReturnType<typeof successLoginAction>
   | ReturnType<typeof failLoginAction>;
 
-export type LoginState = { isLoading: boolean; login: boolean }
+export type LoginState = { isLoading: boolean; login: boolean, error: Error | null }
 
 export const loginReducer = (state: LoginState, action: LoginActionType): LoginState => {
   switch (action.type) {
@@ -48,6 +48,7 @@ export const loginReducer = (state: LoginState, action: LoginActionType): LoginS
         ...state,
         isLoading: false,
         login: false,
+        error: action.payload,
       };
     default:
       return state;

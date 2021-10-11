@@ -15,8 +15,12 @@ export const useLogin = (params: { username: string; password: string }) => {
         .then((response) => {
           dispatch(actions.successLoginAction())
         })
-        .catch(() => {
-          dispatch(actions.failLoginAction())
+        .catch((error) => {
+          if (error instanceof Error) {
+            dispatch(actions.failLoginAction(error))
+          } else {
+            throw new Error(error)
+          }
         });
     };
 
