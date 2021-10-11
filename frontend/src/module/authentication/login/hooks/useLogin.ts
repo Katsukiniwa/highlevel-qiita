@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useContext, useEffect } from "react";
 import { LoginContext, AuthenticationContext } from "../../../../store/AuthenticationContext";
 import { actions } from "../reducer/loginReducer";
@@ -9,7 +10,8 @@ export const useLogin = (params: { username: string; password: string }) => {
   useEffect(() => {
     const runLogin = async () => {
       dispatch(actions.startLoginAction(params));
-      fetch("/api/user")
+      
+      axios.post('/login', params)
         .then((response) => {
           dispatch(actions.successLoginAction())
         })
