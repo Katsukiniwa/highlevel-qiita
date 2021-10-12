@@ -1,9 +1,12 @@
-import { ReactElement, useEffect, useState } from 'react'
+import { FormEvent, ReactElement, useContext, useEffect, useState } from 'react'
 import BaseLayout from '../components/layouts/BaseLayout'
 import React from "react"
 import Head from 'next/head'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useLogin } from '../module/authentication/login/hooks/useLogin';
+import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext';
+import { actions } from '../module/authentication/login';
+import axios from 'axios';
 
 interface IFormInput {
   username: string;
@@ -11,15 +14,35 @@ interface IFormInput {
 }
 
 export default function Login() {
-  const [login, dispatch] = useLogin();
+  const loginDispatch = useContext(LoginContext);
+  const [username, setUsername] = useState('katsukiniwa')
+  const [password, setPassword] = useState('password')
   // const { register, handleSubmit } = useForm<IFormInput>();
 
   // const useSubmit: SubmitHandler<IFormInput> = (data) => {
   //   useLogin(data)
   // };
 
-  const useSubmit = () => {
-    dispatch()
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      const { worker } = require('../../mocks/browsers')
+      worker.start()
+    }
+  }, [])
+
+  const submitLoginForm = async (e: FormEvent) => {
+    e.preventDefault()
+    loginDispatch(actions.startLoginAction())
+    try {
+      await axios.post('/login', {username, password})
+      loginDispatch(actions.successLoginAction())
+    } catch (error) {
+      if (error instanceof Error) {
+        loginDispatch(actions.failLoginAction(error))
+      } else {
+        throw error
+      }
+    }
   };
 
   return (
@@ -34,7 +57,7 @@ export default function Login() {
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           // onSubmit={handleSubmit(useSubmit)}
-          onSubmit={useSubmit}
+          onSubmit={(e) => submitLoginForm(e)}
         >
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">

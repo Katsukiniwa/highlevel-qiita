@@ -17,7 +17,7 @@ export const useLogin = (): [LoginState, () => void] => {
         return
       };
 
-      dispatch(actions.startLoginAction({username: 'kn', password: 'password'}));
+      dispatch(actions.startLoginAction());
 
       try {
         await axios.post('/login', {username: 'kn', password: 'password'})

@@ -4,7 +4,7 @@ const START_LOGIN = "START_LOGIN" as const;
 const SUCCESS_LOGIN = "SUCCESS_LOGIN" as const;
 const FAIL_LOGIN = "FAIL_LOGIN" as const;
 
-const startLoginAction = (loginAttribute: Login) => {
+const startLoginAction = () => {
   return { type: START_LOGIN };
 };
 
