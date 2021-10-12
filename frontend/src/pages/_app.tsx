@@ -1,6 +1,7 @@
 import '../styles/globals.scss'
 
 import type { ReactElement, ReactNode } from 'react'
+import { AuthenticationContextProvider } from '../store/AuthenticationContext'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
@@ -15,5 +16,9 @@ type AppPropsWithLayout = AppProps & {
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
 
-  return getLayout(<Component {...pageProps} />)
+  return getLayout(
+    <AuthenticationContextProvider>
+      <Component {...pageProps} />
+    </AuthenticationContextProvider>
+  )
 }

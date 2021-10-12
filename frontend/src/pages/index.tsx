@@ -3,7 +3,6 @@ import Head from 'next/head'
 import BaseLayout from '../components/layouts/BaseLayout'
 import type { ReactElement } from 'react'
 import React, { useEffect, useState } from 'react'
-import { NavigationHeader } from '../components/layouts/NavigationHeader'
 import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
 
@@ -47,7 +46,7 @@ export default function Home() {
 
       <main>
         <div className='px-8 py-4 bg-green-50'>
-          <h2　className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
+          <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             カテゴリから探す
           </h2>
           <div className="flex flex-row flex-wrap gap-8">
@@ -62,7 +61,7 @@ export default function Home() {
           </div>
         </div>
         <div className='px-8 py-4 bg-gray-100'>
-          <h2　className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
+          <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             人気の質問から探す
           </h2>
           <div className="grid gap-4 grid-cols-4">
@@ -74,7 +73,7 @@ export default function Home() {
           </div>
         </div>
         <div className='px-8 py-4 bg-gray-100'>
-          <h2　className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
+          <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             最新の質問から探す
           </h2>
           <div className="grid gap-4 grid-cols-4">

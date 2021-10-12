@@ -11,10 +11,15 @@ interface IFormInput {
 }
 
 export default function Login() {
-  const { register, handleSubmit } = useForm<IFormInput>();
+  const [login, dispatch] = useLogin();
+  // const { register, handleSubmit } = useForm<IFormInput>();
 
-  const useSubmit: SubmitHandler<IFormInput> = (data) => {
-    useLogin(data)
+  // const useSubmit: SubmitHandler<IFormInput> = (data) => {
+  //   useLogin(data)
+  // };
+
+  const useSubmit = () => {
+    dispatch()
   };
 
   return (
@@ -28,14 +33,15 @@ export default function Login() {
       <div className="w-1/2 mx-auto p-8">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          onSubmit={handleSubmit(useSubmit)}
+          // onSubmit={handleSubmit(useSubmit)}
+          onSubmit={useSubmit}
         >
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Username
             </label>
             <input
-              {...register("username")}
+              // {...register("username")}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
@@ -47,7 +53,7 @@ export default function Login() {
               Password
             </label>
             <input
-              {...register("password")}
+              // {...register("password")}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
