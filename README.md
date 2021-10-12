@@ -3,7 +3,7 @@
 勘が鈍っているのといい加減Terraform + AWSを身につけたくて作成した素振りプロジェクト
 
 ## 技術スタック
-
+i
 ### バックエンド
 
 - Rails
@@ -21,6 +21,7 @@
   - CSSにはtailwindを使用
 
 ## 参考にさせて頂いた記事・リポジトリ
-
+i
 [Context API と useReducer で custom hook を作る時のテンプレート](https://blog.ojisan.io/context-reducer-custom-hook/)
+
 [mastodon/mastodon](https://github.com/mastodon/mastodon)
