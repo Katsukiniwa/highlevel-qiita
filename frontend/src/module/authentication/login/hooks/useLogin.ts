@@ -1,18 +1,26 @@
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext, AuthenticationContext } from "../../../../store/AuthenticationContext";
-import { actions } from "../reducer/loginReducer";
+import { actions, LoginState } from "../reducer/loginReducer";
 
-export const useLogin = (params: { username: string; password: string }) => {
+export const useLogin = (): [LoginState, () => void] => {
   const loginState = useContext(AuthenticationContext);
   const dispatch = useContext(LoginContext);
+  const [refetchIndex, setRefetchIndex] = useState(0);
+
+  const refetch = () =>
+    setRefetchIndex((prevRefetchIndex) => prevRefetchIndex + 1);
 
   useEffect(() => {
     const runLogin = async () => {
-      dispatch(actions.startLoginAction(params));
+      if (!dispatch) {
+        return
+      };
+
+      dispatch(actions.startLoginAction({username: 'kn', password: 'password'}));
 
       try {
-        await axios.post('/login', params)
+        await axios.post('/login', {username: 'kn', password: 'password'})
         dispatch(actions.successLoginAction())
       } catch (error) {
         if (error instanceof Error) {
@@ -24,7 +32,7 @@ export const useLogin = (params: { username: string; password: string }) => {
     };
 
     runLogin();
-  }, [dispatch, params]);
+  }, [refetchIndex]);
 
-  return [loginState, dispatch];
+  return [loginState, refetch];
 }

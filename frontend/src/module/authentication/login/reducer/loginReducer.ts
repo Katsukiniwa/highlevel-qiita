@@ -36,12 +36,14 @@ export const loginReducer = (state: LoginState, action: LoginActionType): LoginS
         ...state,
         isLoading: true,
         login: false,
+        error: null
       };
     case SUCCESS_LOGIN:
       return {
         ...state,
         isLoading: false,
         login: action.payload,
+        error: null
       };
     case FAIL_LOGIN:
       return {
