@@ -1,5 +1,4 @@
-// src/mocks/handlers.js
-import { rest } from 'msw';
+import { rest, RestRequest } from 'msw';
 
 const novels = [...Array(12)].map((_, index) => ({ id: `00${index}`, title: `sample 00${index}` }));
 
@@ -7,16 +6,20 @@ const latestNovels = [...Array(4)].map((_, index) => ({ id: `00${index}`, title:
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
-    const { username } = req.body;
+    // @ts-ignore
+    const { username, password } = req.body;
 
-    return res(
-      ctx.json({
-        id: 'f79e82e8-c34a-4dc7-a49e-9fadc0979fda',
-        username,
-        firstName: 'John',
-        lastName: 'Maverick',
-      }),
-    );
+    if (password === 'password') {
+      return res(
+        ctx.cookie('remember_token', username),
+        ctx.json({ message: 'success login' }),
+      )
+    } else {
+      return res(
+        ctx.status(400),
+        ctx.json({ message: 'Failed to login' }),
+      )
+    }
   }),
 
   rest.get('/novels', (req, res, ctx) => res(
