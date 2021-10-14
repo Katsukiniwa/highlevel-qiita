@@ -14,9 +14,11 @@ ActiveRecord::Schema.define(version: 2021_10_14_143729) do
 
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "question_id"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
@@ -76,6 +78,10 @@ ActiveRecord::Schema.define(version: 2021_10_14_143729) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "draft_questions", "users"
+  add_foreign_key "favorite_questions", "questions"
+  add_foreign_key "favorite_questions", "users"
   add_foreign_key "questions", "users"
 end
