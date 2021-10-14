@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorite_questions
   resources :draft_questions
   resources :tags
   resources :categories
