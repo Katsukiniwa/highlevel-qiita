@@ -46,8 +46,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def question_params
-    params.require(:question).permit(:title, :content)
+    params.require(:question).permit(:title, :content, :category_id)
   end
 end
