@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_141510) do
+ActiveRecord::Schema.define(version: 2021_10_14_143729) do
+
+  create_table "answers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -27,6 +35,15 @@ ActiveRecord::Schema.define(version: 2021_10_14_141510) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_draft_questions_on_user_id"
+  end
+
+  create_table "favorite_questions", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_favorite_questions_on_question_id"
+    t.index ["user_id"], name: "index_favorite_questions_on_user_id"
   end
 
   create_table "questions", charset: "utf8mb4", force: :cascade do |t|
