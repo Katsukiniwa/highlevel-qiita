@@ -1,5 +1,5 @@
 class DraftQuestionsController < ApplicationController
-  before_action :set_draft_question, only: [:show, :update, :destroy]
+  before_action :set_draft_question, only: %i[show update destroy]
 
   # GET /draft_questions
   def index
@@ -39,13 +39,12 @@ class DraftQuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_draft_question
-      @draft_question = DraftQuestion.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def draft_question_params
-      params.require(:draft_question).permit(:title, :content)
-    end
+  def set_draft_question
+    @draft_question = DraftQuestion.find(params[:id])
+  end
+
+  def draft_question_params
+    params.require(:draft_question).permit(:title, :content)
+  end
 end
