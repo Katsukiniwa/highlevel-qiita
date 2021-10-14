@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_143729) do
+ActiveRecord::Schema.define(version: 2021_10_14_151600) do
 
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
@@ -57,6 +57,31 @@ ActiveRecord::Schema.define(version: 2021_10_14_143729) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "replies", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_replies_on_question_id"
+  end
+
+  create_table "reply_to_anaswers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_reply_to_anaswers_on_answer_id"
+    t.index ["question_id"], name: "index_reply_to_anaswers_on_question_id"
+  end
+
+  create_table "reply_to_replies", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "reply_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_reply_to_replies_on_question_id"
+    t.index ["reply_id"], name: "index_reply_to_replies_on_reply_id"
+  end
+
   create_table "taggings", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -84,4 +109,9 @@ ActiveRecord::Schema.define(version: 2021_10_14_143729) do
   add_foreign_key "favorite_questions", "questions"
   add_foreign_key "favorite_questions", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "replies", "questions"
+  add_foreign_key "reply_to_anaswers", "answers"
+  add_foreign_key "reply_to_anaswers", "questions"
+  add_foreign_key "reply_to_replies", "questions"
+  add_foreign_key "reply_to_replies", "replies"
 end
