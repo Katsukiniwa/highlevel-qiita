@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_151600) do
+ActiveRecord::Schema.define(version: 2021_10_17_135818) do
 
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
@@ -96,11 +96,12 @@ ActiveRecord::Schema.define(version: 2021_10_14_151600) do
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "hashed_password"
+    t.string "password_digest"
     t.string "icon"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "remember_digest"
+    t.string "email"
   end
 
   add_foreign_key "answers", "questions"
