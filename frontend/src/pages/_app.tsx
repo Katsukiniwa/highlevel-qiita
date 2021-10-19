@@ -13,6 +13,11 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
+if (process.env.NODE_ENV === 'development') {
+  const MockServer = () => import('../../mocks');
+  MockServer();
+}
+
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
 

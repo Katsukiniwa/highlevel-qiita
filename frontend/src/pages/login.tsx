@@ -23,13 +23,6 @@ export default function Login() {
   //   useLogin(data)
   // };
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      const { worker } = require('../../mocks/browsers')
-      worker.start()
-    }
-  }, [])
-
   const submitLoginForm = async (e: FormEvent) => {
     e.preventDefault()
     loginDispatch(actions.startLoginAction())
