@@ -1,6 +1,7 @@
 import { NextPage } from "next"
 import Head from 'next/head'
 import { NavigationHeader } from '../../components/layouts/NavigationHeader'
+import { AnswerCard } from "../../components/object/AnswerCard"
 
 const QuestionIndex: NextPage = () => {
   return (
@@ -44,17 +45,10 @@ const QuestionIndex: NextPage = () => {
 
               <h3 className="py-4">2件の解答</h3>
 
-              <div className="bg-white p-4 mr-8">
-                <p>
-                  子画面とはどういうものを言っていますか？
-                </p>
-                <p>
-                  親画面から子画面を開く際、子画面がある場合には開くことができないようにはしました。
-                </p>
-                <p>
-                  どうやりましたか？
-                </p>
-              </div>
+              {[0, 1].map(item => (
+                <AnswerCard key={item} />
+              ))}
+
             </div>
             <div className="w-1/3 bg-blue-100">w-1/3</div>
           </div>
