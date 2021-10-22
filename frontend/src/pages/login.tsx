@@ -7,6 +7,7 @@ import { useLogin } from '../module/authentication/login/hooks/useLogin';
 import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext';
 import { actions } from '../module/authentication/login';
 import axios from 'axios';
+import { useRouter } from 'next/router'
 
 interface IFormInput {
   username: string;
@@ -14,6 +15,8 @@ interface IFormInput {
 }
 
 export default function Login() {
+  const router = useRouter()
+  const loginState = useContext(AuthenticationContext)
   const loginDispatch = useContext(LoginContext);
   const [username, setUsername] = useState('katsukiniwa')
   const [password, setPassword] = useState('password')
@@ -23,12 +26,19 @@ export default function Login() {
   //   useLogin(data)
   // };
 
+  useEffect(() => {
+    if (loginState.login) {
+      router.push('/')
+    }
+  }, [loginState.login, router])
+
   const submitLoginForm = async (e: FormEvent) => {
     e.preventDefault()
     loginDispatch(actions.startLoginAction())
     try {
-      await axios.post('/login', {username, password})
+      await axios.post('/login', { username, password })
       loginDispatch(actions.successLoginAction())
+      router.push('/')
     } catch (error) {
       if (error instanceof Error) {
         loginDispatch(actions.failLoginAction(error))

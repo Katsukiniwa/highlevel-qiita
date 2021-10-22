@@ -1,10 +1,11 @@
 import axios from 'axios'
 import Head from 'next/head'
 import BaseLayout from '../components/layouts/BaseLayout'
-import type { ReactElement } from 'react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, ReactElement, useContext } from 'react'
 import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
+import { AuthenticationContext } from '../store/AuthenticationContext'
+import { NavigationHeader } from '../components/layouts/NavigationHeader'
 
 export default function Home() {
   const [loading, setLoading] = useState(true)

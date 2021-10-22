@@ -1,6 +1,10 @@
 import Link from "next/link"
+import { useContext } from "react";
+import { AuthenticationContext } from "../../store/AuthenticationContext";
 
 export const NavigationHeader = () => {
+  const loginState = useContext(AuthenticationContext);
+
   return (
     <div className="flex border-b-2 border-fuchsia-600 justify-between px-8 py-3 items-center">
       <Link href={{pathname: '/'}} passHref>
@@ -10,11 +14,14 @@ export const NavigationHeader = () => {
       </Link>
 
       <div>
-        <Link href={{pathname: '/login'}} passHref>
-          <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
-            ログイン
-          </button>
-        </Link>
+        {
+          loginState.login ? <span>GoodMorning</span> :
+            <Link href={{pathname: '/login'}} passHref>
+              <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
+                ログイン
+              </button>
+            </Link>
+        }
       </div>
     </div>
   )
