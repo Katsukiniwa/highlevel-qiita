@@ -57,34 +57,13 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "replies", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_replies_on_question_id"
-  end
-
-  create_table "reply_to_anaswers", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.bigint "answer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["answer_id"], name: "index_reply_to_anaswers_on_answer_id"
-    t.index ["question_id"], name: "index_reply_to_anaswers_on_question_id"
-  end
-
-  create_table "reply_to_replies", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.bigint "reply_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_reply_to_replies_on_question_id"
-    t.index ["reply_id"], name: "index_reply_to_replies_on_reply_id"
-  end
-
   create_table "taggings", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_taggings_on_question_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
   create_table "tags", charset: "utf8mb4", force: :cascade do |t|
@@ -110,9 +89,6 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
   add_foreign_key "favorite_questions", "questions"
   add_foreign_key "favorite_questions", "users"
   add_foreign_key "questions", "users"
-  add_foreign_key "replies", "questions"
-  add_foreign_key "reply_to_anaswers", "answers"
-  add_foreign_key "reply_to_anaswers", "questions"
-  add_foreign_key "reply_to_replies", "questions"
-  add_foreign_key "reply_to_replies", "replies"
+  add_foreign_key "taggings", "questions"
+  add_foreign_key "taggings", "tags"
 end
