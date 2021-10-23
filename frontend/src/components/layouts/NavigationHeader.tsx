@@ -15,7 +15,7 @@ export const NavigationHeader = () => {
 
       <div>
         {
-          loginState.login ? <span>GoodMorning</span> :
+          loginState.login ? <span>ログアウト</span> :
             <Link href={{pathname: '/login'}} passHref>
               <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
                 ログイン

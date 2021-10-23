@@ -20,7 +20,9 @@ export default function Home() {
       <NavigationHeader />
 
       <main>
-        <button onClick={() => refetch()}>random fetch</button>
+        <div className='px-8'>
+          <button onClick={() => refetch()}>fetch</button>
+        </div>
         <div className='px-8 py-4 bg-green-50'>
           <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             カテゴリから探す
