@@ -3,8 +3,7 @@ import { loginReducer, LoginActionType, LoginState } from "../module/authenticat
 
 export const AuthenticationContext = createContext<LoginState>({ isLoading: false, login: false, error: null })
 
-//@ts-ignore
-export const LoginContext = createContext<Dispatch<LoginActionType>>(null)
+export const LoginContext = createContext<Dispatch<LoginActionType>>(() =>{})
 
 export const initialAuthenticationState = { isLoading: false, login: false, error: null }
 
