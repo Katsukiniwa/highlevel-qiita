@@ -13,8 +13,6 @@ const QuestionShow = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NavigationHeader />
-      
       <main>
         <div className="py-4 bg-gray-100">
           <div className="flex max-w-4xl mx-auto">

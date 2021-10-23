@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NavigationHeader />
+      {/* <NavigationHeader /> */}
 
       <main>
         <div className='px-8'>

@@ -4,7 +4,7 @@ import { NavigationHeader } from './NavigationHeader'
 export default function BaseLayout({ children }: { children: ReactElement }) {
   return (
     <>
-      {/* <NavigationHeader /> */}
+      <NavigationHeader />
       <main>
         {children}
       </main>
