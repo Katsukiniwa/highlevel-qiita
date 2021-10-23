@@ -4,6 +4,7 @@ import type { ReactElement, ReactNode } from 'react'
 import { AuthenticationContextProvider } from '../store/AuthenticationContext'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import { QuestionContextProvider } from '../store/QuestionContext'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -23,7 +24,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return getLayout(
     <AuthenticationContextProvider>
-      <Component {...pageProps} />
+      <QuestionContextProvider>
+        <Component {...pageProps} />
+      </QuestionContextProvider>
     </AuthenticationContextProvider>
   )
 }
