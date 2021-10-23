@@ -20,7 +20,7 @@ export const useQuestionFetch = (): [QuestionState, () => void] => {
       }
       
       dispatch(actions.startFetchQuestionAction())
-      
+
       axios.get<Question[]>("/novels")
         .then(res => {
           return res.data

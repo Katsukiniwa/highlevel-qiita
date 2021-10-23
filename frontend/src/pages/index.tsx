@@ -4,31 +4,10 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import React, { useEffect, useState, ReactElement } from 'react'
 import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
+import { useQuestionFetch } from '../module/question/hooks/useQuestionFetch'
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
-  const [questions, setQuestions] = useState<{id: string; title: string}[]>([])
-  const [latestQuestions, setLatestQuestions] = useState<{id: string; title: string}[]>([])
-
-  useEffect(() => {
-    async function fetchData() {
-      const questions = await axios.get<{id: string; title: string}[]>('/novels');
-      const latestQuestions = await axios.get<{id: string; title: string}[]>('/novels/latest');
-      return { questions, latestQuestions }
-    }
-
-    fetchData()
-      .then(res => {
-        setQuestions(res.questions.data);
-        setLatestQuestions(res.latestQuestions.data);
-      })
-      .catch(e => {
-        alert(e);
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [loading]);
+  const [questions, refetch] = useQuestionFetch()
 
   return (
     <div>
@@ -39,6 +18,7 @@ export default function Home() {
       </Head>
 
       <main>
+        <button onClick={() => refetch()}>random fetch</button>
         <div className='px-8 py-4 bg-green-50'>
           <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             カテゴリから探す
@@ -59,7 +39,7 @@ export default function Home() {
             人気の質問から探す
           </h2>
           <div className="grid gap-4 grid-cols-4">
-            {questions.map(item => (
+            {questions.questions.map(item => (
               <div key={item.id}>
                 <QuestionCard id={item.id} title={item.title} />
               </div>
@@ -71,7 +51,7 @@ export default function Home() {
             最新の質問から探す
           </h2>
           <div className="grid gap-4 grid-cols-4">
-            {latestQuestions.map(item => (
+            {questions.questions.map(item => (
               <div key={item.id}>
                 <QuestionCard id={item.id} title={item.title} />
               </div>
