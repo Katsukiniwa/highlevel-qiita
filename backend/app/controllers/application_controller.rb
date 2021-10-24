@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
-  protect_from_forgery with: :exception
   include SessionsHelper
+  include ActionController::Cookies
 
   # ログイン済みユーザーかどうか確認
   def logged_in_user
