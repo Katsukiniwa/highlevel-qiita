@@ -14,7 +14,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-// if (process.env.NODE_ENV === 'development') {
+// if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
 //   const MockServer = () => import('../../mocks');
 //   MockServer();
 // }
