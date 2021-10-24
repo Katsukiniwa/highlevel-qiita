@@ -5,7 +5,7 @@ import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
 import { useQuestionFetch } from '../module/question/hooks/useQuestionFetch'
 
-const Home= () => {
+export default function Home () {
   const [questions, refetch] = useQuestionFetch()
 
   return (
@@ -71,5 +71,3 @@ Home.getLayout = function getLayout(page: ReactElement) {
     </BaseLayout>
   )
 }
-
-export default Home;

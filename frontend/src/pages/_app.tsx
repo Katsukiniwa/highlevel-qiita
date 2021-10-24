@@ -14,14 +14,13 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-// if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-//   const MockServer = () => import('../../mocks');
-//   MockServer();
-// }
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  const MockServer = () => import('../../mocks');
+  MockServer();
+}
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout || ((page) => page);
-  // const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <AuthenticationContextProvider>
