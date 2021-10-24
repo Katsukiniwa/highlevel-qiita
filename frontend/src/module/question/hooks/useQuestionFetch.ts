@@ -21,7 +21,8 @@ export const useQuestionFetch = (): [QuestionState, () => void] => {
       
       dispatch(actions.startFetchQuestionAction())
 
-      axios.get<Question[]>("/novels")
+      // axios.get<Question[]>("/novels")
+      axios.get<Question[]>(`${process.env.NEXT_PUBLIC_API_HOST}/questions`)
         .then(res => {
           return res.data
         })
