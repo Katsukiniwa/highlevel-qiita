@@ -37,5 +37,16 @@ module Backend
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.middleware.use ActionDispatch::Cookies
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        # origins '127.0.0.1:3000', 'localhost:3000'
+        
+        resource "*",
+          headers: :any,
+          methods: [:get, :post, :options, :head]
+      end
+    end
   end
 end
