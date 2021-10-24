@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { ReactElement } from "react"
 import BaseLayout from "../../components/layouts/BaseLayout"
-import { NavigationHeader } from '../../components/layouts/NavigationHeader'
 import { AnswerCard } from "../../components/object/AnswerCard"
 
 const QuestionShow = () => {
