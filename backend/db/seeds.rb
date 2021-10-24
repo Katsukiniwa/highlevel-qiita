@@ -19,15 +19,26 @@ Category.create(
   name_en: 'ddd',
   icon: 'https://example.com/ddd-icon.png'
 )
+Category.create(
+  name: 'オブジェクト指向',
+  name_en: 'object-oriendted-programming',
+  icon: 'https://example.com/object-oriendted-programming.png'
+)
 user = User.find(1)
 eric = User.find(2)
+
 category = Category.find(1)
-user.questions.create(
-  title: 'What is Aggregate?',
-  content: "I don't understand what aggregate is.",
-  category_id: category.id
-)
+
+20.times do |i|
+  user.questions.create(
+    title: "#{i} What is Aggregate?",
+    content: "#{i}I don't understand what aggregate is.",
+    category_id: category.id
+  )
+end
+
 question = Question.find(1)
+
 question.answers.create(
   user_id: 2,
   content: 'Aggregate is root entity for domain object.'

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
-    t.text "content"
+    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
   end
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "name_en"
-    t.string "icon"
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "icon", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,11 +49,13 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
   end
 
   create_table "questions", charset: "utf8mb4", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "content"
+    t.text "content", null: false
     t.bigint "user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_questions_on_category_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -67,8 +69,8 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
   end
 
   create_table "tags", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "name_en"
+    t.string "name", null: false
+    t.string "name_en", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "remember_digest"
-    t.string "email"
+    t.string "email", null: false
   end
 
   add_foreign_key "answers", "questions"
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
   add_foreign_key "draft_questions", "users"
   add_foreign_key "favorite_questions", "questions"
   add_foreign_key "favorite_questions", "users"
+  add_foreign_key "questions", "categories"
   add_foreign_key "questions", "users"
   add_foreign_key "taggings", "questions"
   add_foreign_key "taggings", "tags"
