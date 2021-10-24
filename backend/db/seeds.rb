@@ -24,6 +24,36 @@ Category.create(
   name_en: 'object-oriendted-programming',
   icon: 'https://example.com/object-oriendted-programming.png'
 )
+Category.create(
+  name: 'アーキテクチャ',
+  name_en: 'architecture',
+  icon: 'https://example.com/architecture.png'
+)
+Category.create(
+  name: 'クリーンアーキテクチャ',
+  name_en: 'clean-architecture',
+  icon: 'https://example.com/clean-architecture.png'
+)
+Category.create(
+  name: 'アジャイル',
+  name_en: 'agile',
+  icon: 'https://example.com/agile.png'
+)
+Category.create(
+  name: 'マネジメント',
+  name_en: 'management',
+  icon: 'https://example.com/management.png'
+)
+Category.create(
+  name: 'テックリード',
+  name_en: 'tech-lead',
+  icon: 'https://example.com/tech-lead.png'
+)
+Category.create(
+  name: '関数型',
+  name_en: 'functional-programming',
+  icon: 'https://example.com/functional-programming.png'
+)
 user = User.find(1)
 eric = User.find(2)
 
