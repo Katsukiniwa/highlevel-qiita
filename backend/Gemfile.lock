@@ -70,6 +70,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    alba (1.4.0)
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
@@ -267,6 +268,7 @@ PLATFORMS
 DEPENDENCIES
   active_interaction (~> 4.0)
   active_model_serializers (~> 0.10.0)
+  alba
   annotate
   aws-sdk-s3 (~> 1)
   bcrypt (~> 3.1.13)
