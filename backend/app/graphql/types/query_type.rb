@@ -6,13 +6,13 @@ module Types
     description 'The query root of this schema'
 
     # First describe the field signature:
-    field :post, PostType, 'Find a post by ID' do
+    field :question, QuestionType, 'Find a question by ID' do
       argument :id, ID
     end
 
     # Then provide an implementation
-    def post(id:)
-      Post.find(id)
+    def question(id:)
+      Question.find(id)
     end
 
     field :user, UserType, null: false do
