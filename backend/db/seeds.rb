@@ -1,27 +1,17 @@
 puts "seed start"
+
 hashed_password = User.digest('password')
-user = User.new(
-  name: 'Katsukiniwa',
-  password: 'password',
-  password_confirmation: 'password',
-  email: 'katsukiniwa@test.com',
-  icon: 'https://example.com/katsukiniwa-icon.png'
-)
-user.save!
-User.create(
-  name: 'Eric Evans',
-  password: 'password',
-  password_digest: hashed_password,
-  email: 'ericevans@test.com',
-  icon: 'https://example.com/katsukiniwa-icon.png'
-)
-User.create(
-  name: 'Tom Brown',
-  password: 'password',
-  password_digest: hashed_password,
-  email: 'tombrown@test.com',
-  icon: 'https://example.com/tombrown-icon.png'
-)
+
+50.times do |i|
+  User.create(
+    name: Faker::Name.name,
+    password: 'password',
+    password_digest: hashed_password,
+    email: Faker::Internet.email,
+    icon: "https://example.com/#{Faker::Internet.email}.png"
+  )
+end
+
 Category.create(
   name: 'DDD',
   name_en: 'ddd',
@@ -62,29 +52,32 @@ Category.create(
   name_en: 'functional-programming',
   icon: 'https://example.com/functional-programming.png'
 )
-user = User.find(1)
-eric = User.find(2)
 
-category = Category.find(1)
-
-20.times do |i|
-  user.questions.create(
-    title: "#{i} What is Aggregate?",
-    content: "#{i}I don't understand what aggregate is.",
-    category_id: category.id
-  )
+Category.all.each do |category|
+  100.times do |i|
+    Question.create(
+      title: Faker::Lorem.sentence,
+      content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+      category_id: category.id,
+      user_id: (i % 3) + 1,
+    )
+  end
 end
 
-question = Question.find(1)
+Question.all.each do |q|
+  2.times do |i|
+    q.answers.create(
+      user_id: (i % 5) + 1,
+      content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+    )
+  end
 
-question.answers.create(
-  user_id: 2, # Eric Evans
-  content: 'Aggregate is root entity for domain object.'
-)
-
-question.comments.create(
-  user_id: 3, # Tom Brown
-  content: 'I recommend to read ddd reference.'
-)
+  5.times do |i|
+    q.comments.create(
+      user_id: (i % 5) + 1,
+      content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+    )
+  end
+end
 
 puts "end seed"
