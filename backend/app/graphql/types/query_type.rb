@@ -14,5 +14,14 @@ module Types
     def post(id:)
       Post.find(id)
     end
+
+    field :user, UserType, null: false do
+      description 'ユーザ情報を1件取得する'
+      argument :id, Int, required: true, description: 'ユーザID'
+    end
+
+    def user(id:)
+      User.find(id)
+    end
   end
 end
