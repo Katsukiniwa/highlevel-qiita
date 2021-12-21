@@ -113,6 +113,7 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    graphql (1.13.2)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -277,6 +278,7 @@ DEPENDENCIES
   byebug
   factory_bot
   faker
+  graphql
   image_processing (~> 1.2)
   letter_opener
   letter_opener_web (~> 1.0)
