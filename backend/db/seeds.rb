@@ -1,3 +1,4 @@
+puts "seed start"
 hashed_password = User.digest('password')
 user = User.new(
   name: 'Katsukiniwa',
@@ -13,6 +14,13 @@ User.create(
   password_digest: hashed_password,
   email: 'ericevans@test.com',
   icon: 'https://example.com/katsukiniwa-icon.png'
+)
+User.create(
+  name: 'Tom Brown',
+  password: 'password',
+  password_digest: hashed_password,
+  email: 'tombrown@test.com',
+  icon: 'https://example.com/tombrown-icon.png'
 )
 Category.create(
   name: 'DDD',
@@ -70,6 +78,13 @@ end
 question = Question.find(1)
 
 question.answers.create(
-  user_id: 2,
+  user_id: 2, # Eric Evans
   content: 'Aggregate is root entity for domain object.'
 )
+
+question.comments.create(
+  user_id: 3, # Tom Brown
+  content: 'I recommend to read ddd reference.'
+)
+
+puts "end seed"

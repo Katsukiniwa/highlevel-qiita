@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_135818) do
+ActiveRecord::Schema.define(version: 2021_12_21_053850) do
 
-  create_table "answers", charset: "utf8mb4", force: :cascade do |t|
+  create_table "answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
     t.text "content", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
     t.string "icon", null: false
@@ -30,7 +30,17 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "draft_questions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_comments_on_question_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "draft_questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.bigint "user_id"
@@ -39,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.index ["user_id"], name: "index_draft_questions_on_user_id"
   end
 
-  create_table "favorite_questions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "favorite_questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
@@ -48,7 +58,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.index ["user_id"], name: "index_favorite_questions_on_user_id"
   end
 
-  create_table "questions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -59,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "taggings", charset: "utf8mb4", force: :cascade do |t|
+  create_table "taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "tag_id"
     t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
@@ -68,14 +78,14 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
     t.string "icon"
@@ -87,6 +97,8 @@ ActiveRecord::Schema.define(version: 2021_10_17_135818) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "comments", "questions"
+  add_foreign_key "comments", "users"
   add_foreign_key "draft_questions", "users"
   add_foreign_key "favorite_questions", "questions"
   add_foreign_key "favorite_questions", "users"
