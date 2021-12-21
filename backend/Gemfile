@@ -41,4 +41,6 @@ group :development do
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-byebug'
+  gem 'graphiql-rails'
+  gem 'sprockets', '~> 3.7.2'
 end
