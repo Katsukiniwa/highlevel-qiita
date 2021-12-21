@@ -3,11 +3,19 @@
 # Table name: draft_questions
 #
 #  id         :bigint           not null, primary key
-#  title      :string(255)
 #  content    :text(65535)
-#  user_id    :bigint
+#  title      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint
+#
+# Indexes
+#
+#  index_draft_questions_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 require 'rails_helper'
 
