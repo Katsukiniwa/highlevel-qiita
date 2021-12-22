@@ -25,5 +25,11 @@ module Types
       Category.all.map do |category|
       end
     end
+
+    field :all_links, [LinkType], null: false
+
+    def all_links
+      Link.all
+    end
   end
 end
