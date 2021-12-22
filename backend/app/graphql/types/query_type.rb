@@ -7,13 +7,23 @@ module Types
 
     field :question, resolver: Resolvers::QuestionResolver
 
-    field :user, UserType, null: false do
-      description 'ユーザ情報を1件取得する'
-      argument :id, Int, required: true, description: 'ユーザID'
+    field :category, resolver: Resolvers::CategoryResolver
+
+    field :categories, [CategoryType], null: false do
+      description '全カテゴリを取得する'
     end
 
-    def user(id:)
-      User.find(id)
+    def categories
+      Category.all.includes(questions: :user)
+    end
+
+    field :categories_with_ten_questions, [CategoryType], null: false do
+      description '全カテゴリを各カテゴリ10件の質問と一緒に取得する'
+    end
+
+    def categories_with_ten_questions
+      Category.all.map do |category|
+      end
     end
   end
 end
