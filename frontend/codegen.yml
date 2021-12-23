@@ -1,0 +1,9 @@
+generates:
+  ./src/types/generated/types.d.ts:
+    schema: http://localhost:3000/graphql
+    config:
+      useIndexSignature: true
+      enumsAsTypes: true
+    plugins:
+      - typescript
+      - typescript-operations
