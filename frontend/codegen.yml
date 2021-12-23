@@ -1,9 +1,17 @@
+overwrite: true
+schema: http://localhost:3000/graphql
 generates:
   ./src/types/generated/types.d.ts:
-    schema: http://localhost:3000/graphql
-    config:
-      useIndexSignature: true
-      enumsAsTypes: true
     plugins:
       - typescript
       - typescript-operations
+      - typescript-react-apollo
+    config:
+      useIndexSignature: true
+      enumsAsTypes: true
+      withHooks: true
+      withRefetchfn: true
+      gplImport: 'graphql-tag'
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'
