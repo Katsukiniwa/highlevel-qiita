@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_055434) do
+ActiveRecord::Schema.define(version: 2021_12_23_063404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,15 @@ ActiveRecord::Schema.define(version: 2021_12_23_055434) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "link_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["link_id"], name: "index_votes_on_link_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "questions"
@@ -120,4 +129,6 @@ ActiveRecord::Schema.define(version: 2021_12_23_055434) do
   add_foreign_key "questions", "users"
   add_foreign_key "taggings", "questions"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "votes", "links"
+  add_foreign_key "votes", "users"
 end
