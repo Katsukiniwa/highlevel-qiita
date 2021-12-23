@@ -3,9 +3,9 @@
 # Table name: categories
 #
 #  id         :bigint           not null, primary key
-#  name       :string(255)      not null
-#  name_en    :string(255)      not null
-#  icon       :string(255)      not null
+#  icon       :string           not null
+#  name       :string           not null
+#  name_en    :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

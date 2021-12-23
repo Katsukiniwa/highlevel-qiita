@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_12_22_010616) do
 
-  create_table "answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
     t.text "content", null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
     t.string "icon", null: false
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "user_id"
     t.bigint "question_id"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "draft_questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "draft_questions", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.bigint "user_id"
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.index ["user_id"], name: "index_draft_questions_on_user_id"
   end
 
-  create_table "favorite_questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "favorite_questions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
@@ -58,14 +61,14 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.index ["user_id"], name: "index_favorite_questions_on_user_id"
   end
 
-  create_table "links", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "links", force: :cascade do |t|
     t.string "url"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "questions", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -76,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id"
     t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
@@ -85,14 +88,14 @@ ActiveRecord::Schema.define(version: 2021_12_22_010616) do
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
     t.string "icon"

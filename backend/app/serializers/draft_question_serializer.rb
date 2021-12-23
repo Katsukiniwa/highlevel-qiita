@@ -3,8 +3,8 @@
 # Table name: draft_questions
 #
 #  id         :bigint           not null, primary key
-#  content    :text(65535)
-#  title      :string(255)
+#  content    :text
+#  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint

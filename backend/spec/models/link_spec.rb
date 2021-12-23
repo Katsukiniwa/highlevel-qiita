@@ -3,8 +3,8 @@
 # Table name: links
 #
 #  id          :bigint           not null, primary key
-#  description :text(65535)
-#  url         :string(255)
+#  description :text
+#  url         :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
