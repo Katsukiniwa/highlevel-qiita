@@ -2,6 +2,14 @@ puts "seed start"
 
 hashed_password = User.digest('password')
 
+User.create(
+  name: 'Katsukiniwa',
+  password: 'password',
+  password_digest: hashed_password,
+  email: 'katsukiniwa@test.com',
+  icon: "https://example.com/katsukiniwa.png"
+)
+
 50.times do |i|
   User.create(
     name: Faker::Name.name,
