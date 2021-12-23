@@ -6,8 +6,7 @@ const latestNovels = [...Array(4)].map((_, index) => ({ id: `00${index}`, title:
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
-    // @ts-ignore
-    const { username, password } = req.body;
+    const { username, password } = req.body as any;
 
     if (password === 'password') {
       return res(
