@@ -10,6 +10,8 @@
 
 [PostgreSQLのインストールからRailsでのDB変更まで](https://qiita.com/krtsato/items/4565051608a63f11b316)
 
+[Rails と React+TypeScript でのGraphQLスキーマ運用プラクティス](https://qiita.com/saiidalhalawi@github/items/5853904d0bbdcdddfed3)
+
 ```bash
 bundle lock --add-platform x86_64-linux
 ```
