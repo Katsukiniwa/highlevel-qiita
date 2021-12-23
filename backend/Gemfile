@@ -16,6 +16,9 @@ gem 'simple_command'
 gem 'active_interaction', '~> 4.0'
 gem 'graphql'
 
+# heroku
+gem 'rexml', '~> 3.2', '>= 3.2.4'
+
 gem 'aws-sdk-s3', '~> 1'
 gem "letter_opener"
 gem 'letter_opener_web', '~> 1.0'
