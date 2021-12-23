@@ -7,6 +7,7 @@ module Mutations
     # return type from the mutation
     type Types::LinkType
 
+    # you must run sign_in_user mutation!!!!
     # run this mutation on GraphiQL
     # =============================
     # mutation {
@@ -24,7 +25,8 @@ module Mutations
     def resolve(url:, description:)
       Link.create!(
         url: url,
-        description: description
+        description: description,
+        user: context[:current_user]
       )
     end
   end
