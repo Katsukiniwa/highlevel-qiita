@@ -18,6 +18,7 @@ gem 'graphql'
 
 # heroku
 gem 'rexml', '~> 3.2', '>= 3.2.4'
+gem 'faker'
 
 gem 'aws-sdk-s3', '~> 1'
 gem "letter_opener"
@@ -28,7 +29,6 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'bullet'
-  gem 'faker'
   gem 'factory_bot'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', require: false
