@@ -7,6 +7,12 @@ module Types
 
     field :question, resolver: Resolvers::QuestionResolver
 
+    field :questions, [QuestionType], null: false
+
+    def questions
+      Question.all
+    end
+
     field :category, resolver: Resolvers::CategoryResolver
 
     field :categories, [CategoryType], null: false do
