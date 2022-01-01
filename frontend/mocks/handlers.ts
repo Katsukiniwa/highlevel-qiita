@@ -21,11 +21,12 @@ export const handlers = [
     }
   }),
 
-  rest.get('/novels', (req, res, ctx) => res(
-    ctx.json(novels),
-  )),
+  rest.get('/questions', (req, res, ctx) => {
+    console.log('called')
+    res(ctx.json(novels))
+  }),
 
-  rest.get('/novels/latest', (req, res, ctx) => res(
+  rest.get('/questions/latest', (req, res, ctx) => res(
     ctx.json(latestNovels),
   )),
 

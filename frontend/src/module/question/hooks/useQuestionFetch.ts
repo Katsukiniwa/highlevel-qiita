@@ -15,14 +15,21 @@ export const useQuestionFetch = (): [QuestionState, () => void] => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!dispatch) {
-        return
-      }
+      if (!dispatch) return
       
-      dispatch(actions.startFetchQuestionAction())
+      dispatch(actions.startFetchQuestionAction());
 
-      // axios.get<Question[]>("/novels")
-      axios.get<Question[]>(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions`)
+      // (async function () {
+      //   try {
+      //     const {data} = await axios.get<Question[]>(`${process.env.NEXT_PUBLIC_API_HOST}/questions`)
+      //     dispatch(actions.successFetchQuestionAction(data))
+      //   } catch (err) {
+      //     const error = err as any
+      //     dispatch(actions.failFetchQuestionAction(error))
+      //   }
+      // })()
+
+      axios.get<Question[]>(`/questions`)
         .then(res => {
           return res.data
         })
