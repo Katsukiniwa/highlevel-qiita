@@ -29,8 +29,8 @@ resource "aws_codebuild_project" "build" {
   source {
     type = "CODEPIPELINE"
     buildspec = templatefile("files/buildspec.yml", {
-      # ssm_rails_master_key_name = aws_ssm_parameter.rails_master_key.name
-      # ssm_database_url_name     = aws_ssm_parameter.database_url.name
+      ssm_rails_master_key_name = aws_ssm_parameter.rails_master_key.name
+      ssm_database_url_name     = aws_ssm_parameter.database_url.name
       account_id                = local.account_id
       bucket                    = aws_s3_bucket.build.bucket
       task_definition_key       = aws_s3_bucket_object.task_definition.key
