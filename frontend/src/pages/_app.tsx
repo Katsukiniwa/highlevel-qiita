@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 
-import type { ReactChild, ReactElement, ReactNode } from 'react'
+import type { ReactChild, ReactElement } from 'react'
 import { AuthenticationContextProvider } from '../store/AuthenticationContext'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import type { NextPage } from 'next'
