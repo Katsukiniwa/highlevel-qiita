@@ -19,7 +19,7 @@
 #
 class Link < ApplicationRecord
   belongs_to :user, optional: true # Prevent ActiveRecord::RecordInvalid
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
   validates :description, presence: true, length: { maximum: 500 }
 end
