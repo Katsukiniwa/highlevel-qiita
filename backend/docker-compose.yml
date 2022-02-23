@@ -32,12 +32,13 @@ services:
       DATABASE_URL: "postgres://postgres:postgres@db:5432"
       REDIS_URL: "redis://redis:6379/"
       RAILS_MASTER_KEY:
+      PORT: 3005
     depends_on:
       - db
       - redis
     # command: ["bin/rails", "server", "-b", "0.0.0.0"]
-    expose: ["3000"]
-    ports: ["3000:3000"]
+    expose: ["3005"]
+    ports: ["3005:3005"]
     user: root
     working_dir: /app
 
