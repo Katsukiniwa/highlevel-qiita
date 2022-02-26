@@ -49,4 +49,5 @@ group :development do
   gem 'pry-byebug'
   gem 'graphiql-rails'
   gem 'sprockets', '~> 3.7.2'
+  gem 'solargraph'
 end
