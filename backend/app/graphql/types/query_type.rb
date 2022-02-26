@@ -32,10 +32,6 @@ module Types
       end
     end
 
-    field :all_links, [LinkType], null: false
-
-    def all_links
-      Link.all
-    end
+    field :all_links, resolver: Resolvers::LinksSearch
   end
 end
