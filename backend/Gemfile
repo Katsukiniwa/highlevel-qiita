@@ -9,11 +9,12 @@ gem 'puma', '~> 5.0'
 gem 'bcrypt', '~> 3.1.13'
 gem 'image_processing', '~> 1.2'
 
-# gem 'active_model_serializers', '~> 0.10.0'
-# gem 'alba'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'alba'
 gem 'simple_command'
 gem 'active_interaction', '~> 4.0'
 gem 'graphql'
+gem 'search_object_graphql'
 
 # heroku
 gem 'rexml', '~> 3.2', '>= 3.2.4'
