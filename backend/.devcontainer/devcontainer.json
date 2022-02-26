@@ -1,0 +1,18 @@
+{
+	"name": "dev-container", // コンテナ表示名
+	"service": "web", // Docker Composeの接続サービス名
+	"workspaceFolder": "/app", // Workspaceのフォルダを指定
+	"dockerComposeFile": [
+		"../docker-compose.yml" // Docker Composeのファイルパス
+	],
+	// "service": "dev", // Docker Composeの接続サービス名
+	"extensions": [ // コンテナ内でインストールするVS Codeの拡張機能ID
+		"github.vscode-pull-request-github",
+    "oderwat.indent-rainbow",
+		"rebornix.ruby",
+		"misogi.ruby-rubocop",
+		"castwide.solargraph"
+	],
+	"settings": { // コンテナ内に追加するVS Codeの設定
+	}
+}
