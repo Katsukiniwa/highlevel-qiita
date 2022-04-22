@@ -71,6 +71,12 @@ export type Link = {
   votes: Array<Vote>;
 };
 
+export type LinkFilter = {
+  OR?: InputMaybe<Array<LinkFilter>>;
+  descriptionContains?: InputMaybe<Scalars['String']>;
+  urlContains?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createLink?: Maybe<Link>;
@@ -102,7 +108,7 @@ export type MutationSignUpArgs = {
 /** The query root of this schema */
 export type Query = {
   __typename?: 'Query';
-  allLinks: Array<Link>;
+  allLinks: Array<Maybe<Link>>;
   /** 全カテゴリを取得する */
   categories: Array<Category>;
   /** 全カテゴリを各カテゴリ10件の質問と一緒に取得する */
@@ -112,6 +118,14 @@ export type Query = {
   /** Find a question by ID */
   question: Question;
   questions: Array<Question>;
+};
+
+
+/** The query root of this schema */
+export type QueryAllLinksArgs = {
+  filter?: InputMaybe<LinkFilter>;
+  first?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -183,7 +197,7 @@ export type Vote = {
 export type AllLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllLinksQuery = { __typename?: 'Query', allLinks: Array<{ __typename?: 'Link', votes: Array<{ __typename?: 'Vote', id: string }> }> };
+export type AllLinksQuery = { __typename?: 'Query', allLinks: Array<{ __typename?: 'Link', votes: Array<{ __typename?: 'Vote', id: string }> } | null | undefined> };
 
 export type QuestionsQueryVariables = Exact<{ [key: string]: never; }>;
 
