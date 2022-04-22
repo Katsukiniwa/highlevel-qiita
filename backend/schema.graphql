@@ -62,6 +62,12 @@ type Link {
   votes: [Vote!]!
 }
 
+input LinkFilter {
+  OR: [LinkFilter!]
+  descriptionContains: String
+  urlContains: String
+}
+
 type Mutation {
   createLink(
     """
@@ -93,7 +99,7 @@ type Mutation {
 The query root of this schema
 """
 type Query {
-  allLinks: [Link!]!
+  allLinks(filter: LinkFilter, first: Int, skip: Int): [Link]!
 
   """
   全カテゴリを取得する
@@ -114,6 +120,7 @@ type Query {
   Find a question by ID
   """
   question(id: ID!): Question!
+  questions: [Question!]!
 }
 
 type Question {
