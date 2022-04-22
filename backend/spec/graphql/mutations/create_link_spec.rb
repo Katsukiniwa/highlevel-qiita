@@ -11,9 +11,11 @@ RSpec.describe Mutations::CreateLink do
     expect(link).to be_persisted
   end
 
-  it "CreateLink mutationでlinkが作成されないこと" do
-    expect{
-      Mutations::CreateLink.new(object: nil, field: nil, context: {}).resolve(url: 'http://example2.com', description: nil)
-    }.to eq(GraphQL::ExecutionError.new("Invalid input: Description can't be blank"))
+  it "CreateLink mutationでlinkが作成されないこと" do    
+    expect {
+      Mutations::CreateLink
+        .new(object: nil, field: nil, context: {})
+        .resolve(url: 'http://example2.com', description: nil)
+    }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end
