@@ -13,6 +13,8 @@ module Types
       Question.all
     end
 
+    field :questions_per_page, resolver: Resolvers::QuestionsPerPageResolver
+
     field :category, resolver: Resolvers::CategoryResolver
 
     field :categories, [CategoryType], null: false do

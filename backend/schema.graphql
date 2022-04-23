@@ -121,6 +121,11 @@ type Query {
   """
   question(id: ID!): Question!
   questions: [Question!]!
+
+  """
+  Get questions per page
+  """
+  questionsPerPage(page: Int!): QuestionListPage!
 }
 
 type Question {
@@ -131,6 +136,14 @@ type Question {
   title: String!
   updatedAt: ISO8601DateTime!
   user: User!
+}
+
+type QuestionListPage {
+  currentPage: Int!
+  id: Int!
+  lastPage: Int!
+  pageSize: Int!
+  questions: [Question!]!
 }
 
 """
