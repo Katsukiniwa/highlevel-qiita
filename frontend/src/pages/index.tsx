@@ -3,7 +3,6 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import React, { ReactElement } from 'react'
 import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
-import { useQuestionFetch } from '../module/question/hooks/useQuestionFetch'
 import { useQuestionsQuery } from "../types/generated/types.d";
 
 export default function Home () {
@@ -22,9 +21,6 @@ export default function Home () {
       </Head>
 
       <main>
-        {/* <div className='px-8'>
-          <button onClick={() => refetch()}>fetch</button>
-        </div> */}
         <div className='px-8 py-4 bg-green-50'>
           <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             カテゴリから探す
