@@ -140,7 +140,6 @@ type Question {
 
 type QuestionListPage {
   currentPage: Int!
-  id: Int!
   lastPage: Int!
   pageSize: Int!
   questions: [Question!]!

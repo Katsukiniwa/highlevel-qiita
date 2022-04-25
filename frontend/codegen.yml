@@ -1,6 +1,8 @@
 overwrite: true
 schema: http://localhost:3005/graphql
-documents: ./src/graphql/queries/*.graphql
+documents:
+  - ./src/graphql/queries/*.graphql
+  - ./src/graphql/mutations/*.graphql
 generates:
   ./src/types/generated/types.d.ts:
     plugins:

@@ -5,3 +5,15 @@ query questions {
     content
   }
 }
+
+query questionsPerPage($page: Int!) {
+  questionsPerPage(page: $page) {
+    questions {
+      id,
+      title,
+    },
+    currentPage,
+    lastPage,
+    pageSize
+  }
+}
