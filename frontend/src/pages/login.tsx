@@ -96,7 +96,7 @@ export default function Login() {
           </div>
         </form>
         <p className="text-center text-gray-500 text-xs">
-          &copy;2021 Kirinji. All rights reserved.
+          &copy;2022 Katsukiniwa. All rights reserved.
         </p>
       </div>
     </React.Fragment>
