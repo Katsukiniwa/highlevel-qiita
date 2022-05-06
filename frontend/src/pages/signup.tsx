@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { NextPage } from "next"
+import React, { useState } from 'react'
+import { NextPage } from 'next'
 
 const SignUp: NextPage = () => {
   return (

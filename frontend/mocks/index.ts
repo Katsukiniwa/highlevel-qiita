@@ -1,10 +1,10 @@
 if (typeof window === 'undefined') {
-  const { server } = require('./server');
+  const { server } = require('./server')
   if (server) {
-    server.listen();
+    server.listen()
   }
 } else {
-  const { worker } = require('./browsers');
-  worker.start();
+  const { worker } = require('./browsers')
+  worker.start()
 }
-export {};
+export {}

@@ -5,9 +5,7 @@ export default function BaseLayout({ children }: { children: ReactElement }) {
   return (
     <>
       <NavigationHeader />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
     </>
   )
 }

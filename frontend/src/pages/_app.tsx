@@ -15,27 +15,25 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  const MockServer = () => import('../../mocks');
-  MockServer();
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  const MockServer = () => import('../../mocks')
+  MockServer()
 }
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache()
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
   cache,
   credentials: 'include',
-});
+})
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
     <ApolloProvider client={client}>
       <AuthenticationContextProvider>
-        <QuestionContextProvider>
-          {getLayout(<Component {...pageProps} />)}
-        </QuestionContextProvider>
+        <QuestionContextProvider>{getLayout(<Component {...pageProps} />)}</QuestionContextProvider>
       </AuthenticationContextProvider>
     </ApolloProvider>
   )

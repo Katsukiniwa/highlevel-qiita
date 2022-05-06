@@ -1,26 +1,25 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { LoginContext, AuthenticationContext } from "../../../../store/AuthenticationContext";
-import { actions, LoginState } from "../reducer/loginReducer";
+import axios from 'axios'
+import { useContext, useEffect, useState } from 'react'
+import { LoginContext, AuthenticationContext } from '../../../../store/AuthenticationContext'
+import { actions, LoginState } from '../reducer/loginReducer'
 
 export const useLogin = (): [LoginState, () => void] => {
-  const loginState = useContext(AuthenticationContext);
-  const dispatch = useContext(LoginContext);
-  const [refetchIndex, setRefetchIndex] = useState(0);
+  const loginState = useContext(AuthenticationContext)
+  const dispatch = useContext(LoginContext)
+  const [refetchIndex, setRefetchIndex] = useState(0)
 
-  const refetch = () =>
-    setRefetchIndex((prevRefetchIndex) => prevRefetchIndex + 1);
+  const refetch = () => setRefetchIndex((prevRefetchIndex) => prevRefetchIndex + 1)
 
   useEffect(() => {
     const runLogin = async () => {
       if (!dispatch) {
         return
-      };
+      }
 
-      dispatch(actions.startLoginAction());
+      dispatch(actions.startLoginAction())
 
       try {
-        await axios.post('/login', {username: 'kn', password: 'password'})
+        await axios.post('/login', { username: 'kn', password: 'password' })
         dispatch(actions.successLoginAction())
       } catch (error) {
         if (error instanceof Error) {
@@ -29,10 +28,10 @@ export const useLogin = (): [LoginState, () => void] => {
           throw error
         }
       }
-    };
+    }
 
-    runLogin();
-  }, [refetchIndex]);
+    runLogin()
+  }, [refetchIndex])
 
-  return [loginState, refetch];
+  return [loginState, refetch]
 }

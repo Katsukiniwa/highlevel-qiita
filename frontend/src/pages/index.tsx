@@ -3,13 +3,13 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import React, { ReactElement } from 'react'
 import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
-import { useCategoriesQuery, useQuestionsPerPageQuery } from "../types/generated/types.d";
+import { useCategoriesQuery, useQuestionsPerPageQuery } from '../types/generated/types.d'
 
-export default function Home () {
+export default function Home() {
   const { loading, data } = useQuestionsPerPageQuery({
     variables: {
-      page: 1
-    }
+      page: 1,
+    },
   })
   const { data: categories } = useCategoriesQuery()
 
@@ -22,34 +22,36 @@ export default function Home () {
       </Head>
 
       <main>
-        {loading || !data ? <p className='px-8 py-4'>loading...</p> : (
+        {loading || !data ? (
+          <p className="px-8 py-4">loading...</p>
+        ) : (
           <div>
-            <div className='px-8 py-4 bg-green-50'>
+            <div className="px-8 py-4 bg-green-50">
               <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
                 カテゴリから探す
               </h2>
               <div className="flex flex-row flex-wrap gap-8">
-                {categories?.categories.map(e => (
+                {categories?.categories.map((e) => (
                   <CategoryLabel key={e.id} name={e.name} categoryId={e.id} />
                 ))}
               </div>
             </div>
-            <div className='px-8 py-4 bg-gray-100'>
+            <div className="px-8 py-4 bg-gray-100">
               <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
                 人気の質問から探す
               </h2>
               <div className="grid grid-cols-4 gap-4 mx-auto">
-                {data.questionsPerPage.questions.map(item => (
+                {data.questionsPerPage.questions.map((item) => (
                   <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
                 ))}
               </div>
             </div>
-            <div className='px-8 py-4 bg-gray-100'>
+            <div className="px-8 py-4 bg-gray-100">
               <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
                 最新の質問から探す
               </h2>
               <div className="grid gap-4 grid-cols-4">
-                {data.questionsPerPage.questions.map(item => (
+                {data.questionsPerPage.questions.map((item) => (
                   <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
                 ))}
               </div>
@@ -62,9 +64,5 @@ export default function Home () {
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <BaseLayout>
-      {page}
-    </BaseLayout>
-  )
+  return <BaseLayout>{page}</BaseLayout>
 }

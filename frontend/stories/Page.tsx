@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import { Header } from './Header';
-import './page.css';
+import { Header } from './Header'
+import './page.css'
 
 interface PageProps {
-  user?: {};
-  onLogin: () => void;
-  onLogout: () => void;
-  onCreateAccount: () => void;
+  user?: {}
+  onLogin: () => void
+  onLogout: () => void
+  onCreateAccount: () => void
 }
 
 export const Page = ({ user, onLogin, onLogout, onCreateAccount }: PageProps) => (
@@ -30,8 +30,8 @@ export const Page = ({ user, onLogin, onLogout, onCreateAccount }: PageProps) =>
       </p>
       <ul>
         <li>
-          Use a higher-level connected component. Storybook helps you compose such data from the
-          "args" of child component stories
+          Use a higher-level connected component. Storybook helps you compose such data from the of
+          child component stories
         </li>
         <li>
           Assemble data in the page component from your services. You can mock these services out
@@ -64,4 +64,4 @@ export const Page = ({ user, onLogin, onLogout, onCreateAccount }: PageProps) =>
       </div>
     </section>
   </article>
-);
+)

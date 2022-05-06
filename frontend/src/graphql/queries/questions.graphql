@@ -9,11 +9,11 @@ query questions {
 query questionsPerPage($page: Int!) {
   questionsPerPage(page: $page) {
     questions {
-      id,
-      title,
-    },
-    currentPage,
-    lastPage,
+      id
+      title
+    }
+    currentPage
+    lastPage
     pageSize
   }
 }
@@ -22,15 +22,15 @@ query categoryQuestions($categoryId: ID!, $page: Int!) {
   categoryQuestions(categoryId: $categoryId, page: $page) {
     category {
       id
-      name,
+      name
       nameEn
-    },
+    }
     questions {
-      id,
-      title,
-    },
-    currentPage,
-    lastPage,
+      id
+      title
+    }
+    currentPage
+    lastPage
     pageSize
   }
 }

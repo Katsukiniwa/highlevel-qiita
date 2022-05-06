@@ -1,3 +1,1 @@
-export const useLogout = () => {
-  
-}
+export const useLogout = () => {}

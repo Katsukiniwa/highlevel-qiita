@@ -1,24 +1,24 @@
 import { FormEvent, ReactElement, useContext, useEffect, useState } from 'react'
 import BaseLayout from '../components/layouts/BaseLayout'
-import React from "react"
+import React from 'react'
 import Head from 'next/head'
-import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext';
-import { actions } from '../module/authentication/login';
+import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext'
+import { actions } from '../module/authentication/login'
 import { useSignInUserMutation } from '../types/generated/types.d'
 import { useRouter } from 'next/router'
 
 export default function Login() {
   const router = useRouter()
   const loginState = useContext(AuthenticationContext)
-  const loginDispatch = useContext(LoginContext);
+  const loginDispatch = useContext(LoginContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('password')
 
-  const [signInUser, { loading }] = useSignInUserMutation(({
+  const [signInUser, { loading }] = useSignInUserMutation({
     variables: {
       email,
-      password
+      password,
     },
     onCompleted: () => {
       loginDispatch(actions.successLoginAction())
@@ -27,7 +27,7 @@ export default function Login() {
     onError(error) {
       alert(error.message)
     },
-  }))
+  })
 
   useEffect(() => {
     if (loginState.login) {
@@ -39,7 +39,7 @@ export default function Login() {
     e.preventDefault()
     loginDispatch(actions.startLoginAction())
     await signInUser()
-  };
+  }
 
   return (
     <React.Fragment>
@@ -83,10 +83,16 @@ export default function Login() {
             />
           </div>
           <div className="flex items-center justify-between">
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              {loading ? "ログイン中..." : "ログイン"}
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              {loading ? 'ログイン中...' : 'ログイン'}
             </button>
-            <a className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800" href="#">
+            <a
+              className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800"
+              href="#"
+            >
               パスワードを忘れた場合
             </a>
           </div>
@@ -100,9 +106,5 @@ export default function Login() {
 }
 
 Login.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <BaseLayout>
-      {page}
-    </BaseLayout>
-  )
+  return <BaseLayout>{page}</BaseLayout>
 }
