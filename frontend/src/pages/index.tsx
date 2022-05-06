@@ -13,10 +13,6 @@ export default function Home () {
   })
   const { data: categories } = useCategoriesQuery()
 
-  if (loading || !data) return (
-    <div>ローディングなう...</div>
-  )
-
   return (
     <div>
       <Head>
@@ -26,36 +22,40 @@ export default function Home () {
       </Head>
 
       <main>
-        <div className='px-8 py-4 bg-green-50'>
-          <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
-            カテゴリから探す
-          </h2>
-          <div className="flex flex-row flex-wrap gap-8">
-            {categories?.categories.map(e => (
-              <CategoryLabel key={e.id} name={e.name} />
-            ))}
+        {loading || !data ? <p className='px-8 py-4'>loading...</p> : (
+          <div>
+            <div className='px-8 py-4 bg-green-50'>
+              <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
+                カテゴリから探す
+              </h2>
+              <div className="flex flex-row flex-wrap gap-8">
+                {categories?.categories.map(e => (
+                  <CategoryLabel key={e.id} name={e.name} categoryId={e.id} />
+                ))}
+              </div>
+            </div>
+            <div className='px-8 py-4 bg-gray-100'>
+              <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
+                人気の質問から探す
+              </h2>
+              <div className="grid grid-cols-4 gap-4 mx-auto">
+                {data.questionsPerPage.questions.map(item => (
+                  <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
+                ))}
+              </div>
+            </div>
+            <div className='px-8 py-4 bg-gray-100'>
+              <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
+                最新の質問から探す
+              </h2>
+              <div className="grid gap-4 grid-cols-4">
+                {data.questionsPerPage.questions.map(item => (
+                  <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className='px-8 py-4 bg-gray-100'>
-          <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
-            人気の質問から探す
-          </h2>
-          <div className="grid grid-cols-4 gap-4 mx-auto">
-            {data.questionsPerPage.questions.map(item => (
-              <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
-            ))}
-          </div>
-        </div>
-        <div className='px-8 py-4 bg-gray-100'>
-          <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
-            最新の質問から探す
-          </h2>
-          <div className="grid gap-4 grid-cols-4">
-            {data.questionsPerPage.questions.map(item => (
-              <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
-            ))}
-          </div>
-        </div>
+        )}
       </main>
     </div>
   )
