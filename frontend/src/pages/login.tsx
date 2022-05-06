@@ -15,10 +15,17 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('password')
 
-  const [signInUser, { data, loading }] = useSignInUserMutation(({
+  const [signInUser, { loading }] = useSignInUserMutation(({
     variables: {
       email,
       password
+    },
+    onCompleted: () => {
+      loginDispatch(actions.successLoginAction())
+      router.push('/')
+    },
+    onError(error) {
+      alert(error.message)
     },
   }))
 
@@ -31,13 +38,7 @@ export default function Login() {
   const submitLoginForm = async (e: FormEvent) => {
     e.preventDefault()
     loginDispatch(actions.startLoginAction())
-    try {
-      await signInUser()
-      loginDispatch(actions.successLoginAction())
-      router.push('/')
-    } catch (error) {
-      console.error(error)
-    }
+    await signInUser()
   };
 
   return (
@@ -83,7 +84,7 @@ export default function Login() {
           </div>
           <div className="flex items-center justify-between">
             <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              ログイン
+              {loading ? "ログイン中..." : "ログイン"}
             </button>
             <a className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800" href="#">
               パスワードを忘れた場合
