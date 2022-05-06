@@ -24,6 +24,7 @@ const cache = new InMemoryCache();
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
   cache,
+  credentials: 'include',
 });
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {

@@ -14,11 +14,12 @@ export default function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('password')
-  const [signInUser] = useSignInUserMutation(({
+
+  const [signInUser, { data, loading }] = useSignInUserMutation(({
     variables: {
       email,
       password
-    }
+    },
   }))
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Login() {
     e.preventDefault()
     loginDispatch(actions.startLoginAction())
     try {
-      signInUser()
+      await signInUser()
       loginDispatch(actions.successLoginAction())
       router.push('/')
     } catch (error) {
