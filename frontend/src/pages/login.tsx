@@ -2,29 +2,24 @@ import { FormEvent, ReactElement, useContext, useEffect, useState } from 'react'
 import BaseLayout from '../components/layouts/BaseLayout'
 import React from "react"
 import Head from 'next/head'
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useLogin } from '../module/authentication/login/hooks/useLogin';
 import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext';
 import { actions } from '../module/authentication/login';
-import axios from 'axios';
+import { useSignInUserMutation } from '../types/generated/types.d'
 import { useRouter } from 'next/router'
-
-interface IFormInput {
-  username: string;
-  password: string;
-}
 
 export default function Login() {
   const router = useRouter()
   const loginState = useContext(AuthenticationContext)
   const loginDispatch = useContext(LoginContext);
-  const [username, setUsername] = useState('katsukiniwa')
-  const [password, setPassword] = useState('password')
-  // const { register, handleSubmit } = useForm<IFormInput>();
 
-  // const useSubmit: SubmitHandler<IFormInput> = (data) => {
-  //   useLogin(data)
-  // };
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('password')
+  const [signInUser] = useSignInUserMutation(({
+    variables: {
+      email,
+      password
+    }
+  }))
 
   useEffect(() => {
     if (loginState.login) {
@@ -36,15 +31,11 @@ export default function Login() {
     e.preventDefault()
     loginDispatch(actions.startLoginAction())
     try {
-      await axios.post('/login', { username, password })
+      signInUser()
       loginDispatch(actions.successLoginAction())
       router.push('/')
     } catch (error) {
-      if (error instanceof Error) {
-        loginDispatch(actions.failLoginAction(error))
-      } else {
-        throw error
-      }
+      console.error(error)
     }
   };
 
@@ -59,19 +50,20 @@ export default function Login() {
       <div className="w-1/2 mx-auto p-8">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          // onSubmit={handleSubmit(useSubmit)}
           onSubmit={(e) => submitLoginForm(e)}
         >
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-              Username
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              Email
             </label>
             <input
-              // {...register("username")}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              type="text"
-              placeholder="ユーザ名"
+              id="email"
+              type="email"
+              placeholder="account@example.com"
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }}
             />
           </div>
           <div className="mb-6">
@@ -79,11 +71,13 @@ export default function Login() {
               Password
             </label>
             <input
-              // {...register("password")}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="**********"
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
             />
           </div>
           <div className="flex items-center justify-between">
