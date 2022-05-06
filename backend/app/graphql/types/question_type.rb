@@ -15,4 +15,12 @@ module Types
     field :current_page, Int, null: false
     field :page_size, Int, null: false
   end
+
+  class CategoryQuestionListPageType < Types::BaseObject
+    field :category, CategoryType, null: false
+    field :questions, [QuestionType], null: false
+    field :last_page, Int, null: false
+    field :current_page, Int, null: false
+    field :page_size, Int, null: false
+  end
 end

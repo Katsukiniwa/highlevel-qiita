@@ -117,6 +117,11 @@ type Query {
   category(nameEn: String!): Category!
 
   """
+  Get questions per category
+  """
+  categoryQuestions(categoryId: ID!, page: Int!): QuestionListPage!
+
+  """
   Find a question by ID
   """
   question(id: ID!): Question!

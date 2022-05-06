@@ -13,6 +13,8 @@ module Types
       Question.all
     end
 
+    field :category_questions, resolver: Resolvers::CategoryQuestionResolver
+
     field :questions_per_page, resolver: Resolvers::QuestionsPerPageResolver
 
     field :category, resolver: Resolvers::CategoryResolver
