@@ -42,7 +42,7 @@ module Backend
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         # origins "*"
-        origins '127.0.0.1:8080', 'localhost:8080'
+        origins '127.0.0.1:8080', 'localhost:8080', 'https://next-rails-playground.vercel.app'
         
         resource "*",
           headers: :any,
