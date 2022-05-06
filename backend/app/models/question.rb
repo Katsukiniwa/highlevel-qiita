@@ -28,6 +28,6 @@ class Question < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :user_id, presence: true
-  validates :title, presence: true, length: { maximum: 200 }
+  validates :title, presence: true, length: { minimum: 5, maximum: 200 }
   validates :content, presence: true
 end
