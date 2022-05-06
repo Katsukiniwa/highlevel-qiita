@@ -41,12 +41,13 @@ module Backend
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins "*"
-        # origins '127.0.0.1:3000', 'localhost:3000'
+        # origins "*"
+        origins '127.0.0.1:8080', 'localhost:8080'
         
         resource "*",
           headers: :any,
-          methods: [:get, :post, :options, :head]
+          methods: [:get, :post, :options, :head],
+          credentials: true
       end
     end
   end
