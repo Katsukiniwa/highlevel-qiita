@@ -28,6 +28,15 @@ export type Category = {
   updatedAt: Scalars['ISO8601DateTime'];
 };
 
+export type CategoryQuestionListPage = {
+  __typename?: 'CategoryQuestionListPage';
+  category: Category;
+  currentPage: Scalars['Int'];
+  lastPage: Scalars['Int'];
+  pageSize: Scalars['Int'];
+  questions: Array<Question>;
+};
+
 export type Comment = {
   __typename?: 'Comment';
   content: Scalars['String'];
@@ -115,6 +124,8 @@ export type Query = {
   categoriesWithTenQuestions: Array<Category>;
   /** Find a category by name_en */
   category: Category;
+  /** Get questions per category */
+  categoryQuestions: CategoryQuestionListPage;
   /** Find a question by ID */
   question: Question;
   questions: Array<Question>;
@@ -134,6 +145,13 @@ export type QueryAllLinksArgs = {
 /** The query root of this schema */
 export type QueryCategoryArgs = {
   nameEn: Scalars['String'];
+};
+
+
+/** The query root of this schema */
+export type QueryCategoryQuestionsArgs = {
+  categoryId: Scalars['ID'];
+  page: Scalars['Int'];
 };
 
 
@@ -247,6 +265,14 @@ export type QuestionsPerPageQueryVariables = Exact<{
 
 
 export type QuestionsPerPageQuery = { __typename?: 'Query', questionsPerPage: { __typename?: 'QuestionListPage', currentPage: number, lastPage: number, pageSize: number, questions: Array<{ __typename?: 'Question', id: number, title: string }> } };
+
+export type CategoryQuestionsQueryVariables = Exact<{
+  categoryId: Scalars['ID'];
+  page: Scalars['Int'];
+}>;
+
+
+export type CategoryQuestionsQuery = { __typename?: 'Query', categoryQuestions: { __typename?: 'CategoryQuestionListPage', currentPage: number, lastPage: number, pageSize: number, category: { __typename?: 'Category', id: number, name: string, nameEn: string }, questions: Array<{ __typename?: 'Question', id: number, title: string }> } };
 
 
 export const CreateLinkDocument = gql`
@@ -467,3 +493,50 @@ export function useQuestionsPerPageLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type QuestionsPerPageQueryHookResult = ReturnType<typeof useQuestionsPerPageQuery>;
 export type QuestionsPerPageLazyQueryHookResult = ReturnType<typeof useQuestionsPerPageLazyQuery>;
 export type QuestionsPerPageQueryResult = Apollo.QueryResult<QuestionsPerPageQuery, QuestionsPerPageQueryVariables>;
+export const CategoryQuestionsDocument = gql`
+    query categoryQuestions($categoryId: ID!, $page: Int!) {
+  categoryQuestions(categoryId: $categoryId, page: $page) {
+    category {
+      id
+      name
+      nameEn
+    }
+    questions {
+      id
+      title
+    }
+    currentPage
+    lastPage
+    pageSize
+  }
+}
+    `;
+
+/**
+ * __useCategoryQuestionsQuery__
+ *
+ * To run a query within a React component, call `useCategoryQuestionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCategoryQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCategoryQuestionsQuery({
+ *   variables: {
+ *      categoryId: // value for 'categoryId'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useCategoryQuestionsQuery(baseOptions: Apollo.QueryHookOptions<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>(CategoryQuestionsDocument, options);
+      }
+export function useCategoryQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>(CategoryQuestionsDocument, options);
+        }
+export type CategoryQuestionsQueryHookResult = ReturnType<typeof useCategoryQuestionsQuery>;
+export type CategoryQuestionsLazyQueryHookResult = ReturnType<typeof useCategoryQuestionsLazyQuery>;
+export type CategoryQuestionsQueryResult = Apollo.QueryResult<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>;

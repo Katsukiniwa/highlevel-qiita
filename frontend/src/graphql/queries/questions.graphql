@@ -17,3 +17,20 @@ query questionsPerPage($page: Int!) {
     pageSize
   }
 }
+
+query categoryQuestions($categoryId: ID!, $page: Int!) {
+  categoryQuestions(categoryId: $categoryId, page: $page) {
+    category {
+      id
+      name,
+      nameEn
+    },
+    questions {
+      id,
+      title,
+    },
+    currentPage,
+    lastPage,
+    pageSize
+  }
+}
