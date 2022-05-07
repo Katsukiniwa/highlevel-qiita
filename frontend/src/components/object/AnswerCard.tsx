@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export const AnswerCard = () => {
   return (
-    <div className="bg-white p-4 mr-8 border-b-2 border-blue-100">
+    <div className="bg-white p-4 border-b-2 border-blue-100">
       <div className="flex flex-row items-center">
         <div className="mr-2">
           <Image

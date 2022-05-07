@@ -41,7 +41,7 @@ export default function CategoryDetail() {
           <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             {data.categoryQuestions.category.name}の質問を探す
           </h2>
-          <div className="grid gap-4 grid-cols-4">
+          <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4 mx-auto">
             {data.categoryQuestions.questions.map((item) => (
               <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
             ))}
