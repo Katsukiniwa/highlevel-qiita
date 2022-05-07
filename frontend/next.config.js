@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: ['flowbite.com', 'images.unsplash.com'],
+    domains: ['flowbite.com', 'images.unsplash.com', 'cdn.vuetifyjs.com'],
   },
 
   env: {
