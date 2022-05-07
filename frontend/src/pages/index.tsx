@@ -17,8 +17,15 @@ export default function Home() {
     <div>
       <Head>
         <title>Sortie</title>
-        <meta name="description" content="This site is created by GraphQL on Rails and Next.js" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="This site is created by GraphQL on Rails and Next.js" />
+        <meta property="og:title" content="Sortie" key="Sortie" />
+        <meta
+          property="og:description"
+          content="This site is created by GraphQL on Rails and Next.js"
+        />
+        <meta property="og:image" content="https://katsukiniwa.dev/images/person_of_interest.jpg" />
+        <meta name="twitter:card" content={'summary_large_image'} />
       </Head>
 
       <main>
@@ -40,7 +47,7 @@ export default function Home() {
               <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
                 人気の質問から探す
               </h2>
-              <div className="grid grid-cols-4 gap-4 mx-auto">
+              <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4 mx-auto">
                 {data.questionsPerPage.questions.map((item) => (
                   <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
                 ))}
@@ -50,7 +57,7 @@ export default function Home() {
               <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
                 最新の質問から探す
               </h2>
-              <div className="grid gap-4 grid-cols-4">
+              <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4">
                 {data.questionsPerPage.questions.map((item) => (
                   <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
                 ))}
