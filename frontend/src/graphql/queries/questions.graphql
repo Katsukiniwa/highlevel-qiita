@@ -1,3 +1,11 @@
+query question($id: ID!) {
+  question(id: $id) {
+    id
+    title
+    content
+  }
+}
+
 query questions {
   questions {
     id
@@ -11,6 +19,7 @@ query questionsPerPage($page: Int!) {
     questions {
       id
       title
+      content
     }
     currentPage
     lastPage
@@ -28,6 +37,7 @@ query categoryQuestions($categoryId: ID!, $page: Int!) {
     questions {
       id
       title
+      content
     }
     currentPage
     lastPage

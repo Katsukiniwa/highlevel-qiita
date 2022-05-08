@@ -278,6 +278,15 @@ export type AllLinksQuery = {
   allLinks: Array<{ __typename?: 'Link'; votes: Array<{ __typename?: 'Vote'; id: string }> } | null>
 }
 
+export type QuestionQueryVariables = Exact<{
+  id: Scalars['ID']
+}>
+
+export type QuestionQuery = {
+  __typename?: 'Query'
+  question: { __typename?: 'Question'; id: number; title: string; content: string }
+}
+
 export type QuestionsQueryVariables = Exact<{ [key: string]: never }>
 
 export type QuestionsQuery = {
@@ -296,7 +305,7 @@ export type QuestionsPerPageQuery = {
     currentPage: number
     lastPage: number
     pageSize: number
-    questions: Array<{ __typename?: 'Question'; id: number; title: string }>
+    questions: Array<{ __typename?: 'Question'; id: number; title: string; content: string }>
   }
 }
 
@@ -313,7 +322,7 @@ export type CategoryQuestionsQuery = {
     lastPage: number
     pageSize: number
     category: { __typename?: 'Category'; id: number; name: string; nameEn: string }
-    questions: Array<{ __typename?: 'Question'; id: number; title: string }>
+    questions: Array<{ __typename?: 'Question'; id: number; title: string; content: string }>
   }
 }
 
@@ -535,6 +544,47 @@ export function useAllLinksLazyQuery(
 export type AllLinksQueryHookResult = ReturnType<typeof useAllLinksQuery>
 export type AllLinksLazyQueryHookResult = ReturnType<typeof useAllLinksLazyQuery>
 export type AllLinksQueryResult = Apollo.QueryResult<AllLinksQuery, AllLinksQueryVariables>
+export const QuestionDocument = gql`
+  query question($id: ID!) {
+    question(id: $id) {
+      id
+      title
+      content
+    }
+  }
+`
+
+/**
+ * __useQuestionQuery__
+ *
+ * To run a query within a React component, call `useQuestionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQuestionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQuestionQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useQuestionQuery(
+  baseOptions: Apollo.QueryHookOptions<QuestionQuery, QuestionQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<QuestionQuery, QuestionQueryVariables>(QuestionDocument, options)
+}
+export function useQuestionLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<QuestionQuery, QuestionQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<QuestionQuery, QuestionQueryVariables>(QuestionDocument, options)
+}
+export type QuestionQueryHookResult = ReturnType<typeof useQuestionQuery>
+export type QuestionLazyQueryHookResult = ReturnType<typeof useQuestionLazyQuery>
+export type QuestionQueryResult = Apollo.QueryResult<QuestionQuery, QuestionQueryVariables>
 export const QuestionsDocument = gql`
   query questions {
     questions {
@@ -581,6 +631,7 @@ export const QuestionsPerPageDocument = gql`
       questions {
         id
         title
+        content
       }
       currentPage
       lastPage
@@ -640,6 +691,7 @@ export const CategoryQuestionsDocument = gql`
       questions {
         id
         title
+        content
       }
       currentPage
       lastPage

@@ -1,6 +1,12 @@
 import Link from 'next/link'
 
-export const QuestionCard = ({ id, title }: { id: string; title: string }) => {
+interface Props {
+  id: string
+  title: string
+  content: string
+}
+
+export const QuestionCard = ({ id, title, content }: Props) => {
   return (
     <div className="col-span-1 flex flex-col bg-white shadow-md border border-gray-200 rounded-lg p-5">
       <div className="h-full flex flex-col justify-around">
@@ -14,10 +20,7 @@ export const QuestionCard = ({ id, title }: { id: string; title: string }) => {
             <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">{title}</h5>
           </a>
         </Link>
-        <p className="font-normal text-gray-700">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-          chronological order.
-        </p>
+        <p className="font-normal text-gray-700">{content}</p>
         <Link
           href={{
             pathname: '/questions/[id]',
