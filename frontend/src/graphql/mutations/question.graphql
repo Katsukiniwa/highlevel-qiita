@@ -1,0 +1,6 @@
+mutation createQuestion($categoryId: ID!, $title: String!, $content: String!) {
+  createQuestion(input: { categoryId: $categoryId, title: $title, content: $content }) {
+    id
+    title
+  }
+}
