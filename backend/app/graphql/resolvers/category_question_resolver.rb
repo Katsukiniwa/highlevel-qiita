@@ -10,7 +10,7 @@ module Resolvers
     def resolve(category_id:, page:)
       category = Category.find(category_id)
       all_category_questions = category.questions
-      questions = all_category_questions.offset(10 * (page - 1)).limit(10)
+      questions = all_category_questions.order(created_at: "DESC").offset(10 * (page - 1)).limit(10)
 
       {
         category: category,

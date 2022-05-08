@@ -8,7 +8,7 @@ module Resolvers
 
     def resolve(page:)
       count = page - 1
-      questions = Question.all.offset(10 * count).limit(10)
+      questions = Question.all.order(created_at: "DESC").offset(10 * count).limit(10)
 
       {
         questions: questions,
