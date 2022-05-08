@@ -1,15 +1,33 @@
 import Head from 'next/head'
 import BaseLayout from '../../components/layouts/BaseLayout'
-import React, { useState } from 'react'
+import React, { MouseEventHandler, useState } from 'react'
 import type { ReactElement } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useCategoriesQuery } from '../../types/generated/types.d'
+import { useCategoriesQuery, useCreateQuestionMutation } from '../../types/generated/types.d'
 
 export default function QuestionNew() {
   const { data: categories, loading } = useCategoriesQuery()
+  const [createQuestion, { loading: postQuestionLoading }] = useCreateQuestionMutation()
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [categoryId, setCategoryId] = useState('1')
+
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = () => {
+    createQuestion({
+      variables: {
+        title,
+        content,
+        categoryId,
+      },
+    })
+      .then(() => {
+        alert('質問を投稿しました')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 
   if (loading || !categories) return null
 
@@ -34,8 +52,11 @@ export default function QuestionNew() {
               <button className="py-2 px-4 mr-4 font-semibold rounded-lg shadow-md text-white bg-green-400 hover:bg-green-700">
                 下書き保存
               </button>
-              <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-400 hover:bg-green-700">
-                投稿
+              <button
+                onClick={handleSubmit}
+                className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-400 hover:bg-green-700"
+              >
+                {postQuestionLoading ? '投稿中...' : '投稿'}
               </button>
             </div>
           </div>
@@ -43,7 +64,13 @@ export default function QuestionNew() {
           <div className="inline-block relative py-4">
             <select className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
               {categories.categories.map((category) => (
-                <option key={category.id}>{category.name}</option>
+                <option
+                  key={category.id}
+                  value={category.id}
+                  onClick={() => setCategoryId(category.id.toString())}
+                >
+                  {category.name}
+                </option>
               ))}
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
