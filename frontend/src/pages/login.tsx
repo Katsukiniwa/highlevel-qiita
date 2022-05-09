@@ -20,8 +20,9 @@ export default function Login() {
       email,
       password,
     },
-    onCompleted: () => {
+    onCompleted: (result) => {
       loginDispatch(actions.successLoginAction())
+      localStorage.setItem('profile', JSON.stringify(result.signInUser?.user))
       router.push('/')
     },
     onError(error) {

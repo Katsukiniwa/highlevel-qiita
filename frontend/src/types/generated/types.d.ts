@@ -261,7 +261,17 @@ export type SignInUserMutationVariables = Exact<{
 
 export type SignInUserMutation = {
   __typename?: 'Mutation'
-  signInUser?: { __typename?: 'SignInUserPayload'; token?: string | null } | null
+  signInUser?: {
+    __typename?: 'SignInUserPayload'
+    token?: string | null
+    user?: {
+      __typename?: 'User'
+      id: number
+      name: string
+      email: string
+      icon?: string | null
+    } | null
+  } | null
 }
 
 export type CategoriesQueryVariables = Exact<{ [key: string]: never }>
@@ -423,6 +433,12 @@ export const SignInUserDocument = gql`
   mutation signInUser($email: String!, $password: String!) {
     signInUser(input: { credentials: { email: $email, password: $password } }) {
       token
+      user {
+        id
+        name
+        email
+        icon
+      }
     }
   }
 `
