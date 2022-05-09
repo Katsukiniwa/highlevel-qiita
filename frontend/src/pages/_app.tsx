@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 
-import type { ReactChild, ReactElement } from 'react'
+import { ReactChild, ReactElement } from 'react'
 import { AuthenticationContextProvider } from '../store/AuthenticationContext'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import type { NextPage } from 'next'
@@ -27,7 +27,7 @@ const client = new ApolloClient({
   credentials: 'include',
 })
 
-export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
