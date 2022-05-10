@@ -4,3 +4,15 @@ mutation createQuestion($categoryId: ID!, $title: String!, $content: String!) {
     title
   }
 }
+
+mutation updateQuestion($questionId: ID!, $categoryId: ID!, $title: String!, $content: String!) {
+  updateQuestion(input: { questionId: $questionId, categoryId: $categoryId, title: $title, content: $content }) {
+    id
+    category {
+      id
+      name
+    }
+    title
+    content
+  }
+}

@@ -3,6 +3,16 @@ query question($id: ID!) {
     id
     title
     content
+    comments {
+      id
+      user {
+        id
+        name
+        icon
+      }
+      content
+    }
+    postedByMe
   }
 }
 

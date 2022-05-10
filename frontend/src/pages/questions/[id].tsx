@@ -31,6 +31,7 @@ export default function QuestionDetailPage() {
           <div className="flex max-w-4xl mx-auto">
             <div className="md:w-2/3 sm:w-full">
               <div className="bg-white p-4 md:mr-8">
+                <h1>{data.question.title}</h1>
                 <ReactMarkdown
                   // eslint-disable-next-line react/no-children-prop
                   children={data.question.content}
@@ -54,6 +55,16 @@ export default function QuestionDetailPage() {
                     },
                   }}
                 />
+
+                <div className="flex justify-between">
+                  <button>share</button>
+
+                  {data.question.postedByMe && (
+                    <div>
+                      <button>編集</button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <h3 className="p-4">2件の解答</h3>
