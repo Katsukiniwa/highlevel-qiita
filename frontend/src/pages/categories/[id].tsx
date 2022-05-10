@@ -43,7 +43,12 @@ export default function CategoryDetail() {
           </h2>
           <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4 mx-auto">
             {data.categoryQuestions.questions.map((item) => (
-              <QuestionCard key={item.id} id={item.id.toString()} title={item.title} />
+              <QuestionCard
+                key={item.id}
+                id={item.id.toString()}
+                title={item.title}
+                content={item.content}
+              />
             ))}
           </div>
         </div>
