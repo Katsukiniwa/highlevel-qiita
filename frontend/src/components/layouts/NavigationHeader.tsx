@@ -5,13 +5,12 @@ import { AuthenticationContext } from '../../store/AuthenticationContext'
 
 export const NavigationHeader = () => {
   const loginState = useContext(AuthenticationContext)
-  const imageSrc =
-    'https://images.unsplash.com/photo-1651662897682-2a1a73d7518e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80'
+  const imageSrc = 'https://mdbcdn.b-cdn.net/img/new/avatars/8.webp'
 
   const [openMenu, setOpenMenu] = useState(false)
 
   return (
-    <div className="flex justify-between sm: px-2 md:px-8 sm: py-2 py-1 items-center">
+    <div className="flex justify-between sm: px-2 md:px-8 sm: py-2 py-1 items-center border-b-2 border-sky-200">
       <Link href={{ pathname: '/' }} passHref>
         <a className="text-3xl font-bold">Sortie</a>
       </Link>
@@ -38,20 +37,22 @@ export const NavigationHeader = () => {
 
                 {openMenu && (
                   <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-2xl z-20">
+                    <Link href={{ pathname: '/dashboard' }} passHref>
+                      <a
+                        onClick={() => setOpenMenu(false)}
+                        className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
+                      >
+                        Dashboard
+                      </a>
+                    </Link>
                     <a
-                      href="#"
-                      className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
-                    >
-                      your questions
-                    </a>
-                    <a
-                      href="#"
+                      onClick={() => setOpenMenu(false)}
                       className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
                     >
                       Your likes
                     </a>
                     <a
-                      href="#"
+                      onClick={() => setOpenMenu(false)}
                       className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
                     >
                       Help
@@ -63,10 +64,7 @@ export const NavigationHeader = () => {
                       Settings
                     </a>
                     <div className="border-t-2 border-gray-200">
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
-                      >
+                      <a className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100">
                         Sign Out
                       </a>
                     </div>

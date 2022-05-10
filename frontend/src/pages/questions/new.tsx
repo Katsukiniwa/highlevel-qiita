@@ -4,6 +4,7 @@ import React, { MouseEventHandler, useState } from 'react'
 import type { ReactElement } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useCategoriesQuery, useCreateQuestionMutation } from '../../types/generated/types.d'
+import { ApolloError } from '@apollo/client'
 
 export default function QuestionNew() {
   const { data: categories, loading } = useCategoriesQuery()
@@ -24,7 +25,8 @@ export default function QuestionNew() {
       .then(() => {
         alert('質問を投稿しました')
       })
-      .catch((error) => {
+      .catch((error: ApolloError) => {
+        alert(error.message)
         console.error(error)
       })
   }
