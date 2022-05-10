@@ -42,13 +42,13 @@ export const NavigationHeader = () => {
                       href="#"
                       className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
                     >
-                      your profile
+                      your questions
                     </a>
                     <a
                       href="#"
                       className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
                     >
-                      Your projects
+                      Your likes
                     </a>
                     <a
                       href="#"
