@@ -23,16 +23,8 @@ services:
       - rails_cache:/app/tmp/cache
     tmpfs:
       - /tmp
-    environment:
-      # BUNDLE_PATH: "/app/vendor/bundle"
-      BOOTSNAP_CACHE_DIR: "/app/vendor/bundle"
-      WD_INSTALL_DIR: "/usr/local/bin"
-      HISTFILE: "/app/log/.bash_history"
-      EDITOR: "vi"
-      DATABASE_URL: "postgres://postgres:postgres@db:5432"
-      REDIS_URL: "redis://redis:6379/"
-      RAILS_MASTER_KEY:
-      PORT: 3005
+    env_file:
+      - .env
     depends_on:
       - db
       - redis
