@@ -7,7 +7,7 @@ User.create(
   password: 'password',
   password_digest: hashed_password,
   email: 'katsukiniwa@test.com',
-  icon: "https://example.com/katsukiniwa.png"
+  # icon: "https://example.com/katsukiniwa.png"
 )
 
 50.times do |i|
@@ -16,7 +16,7 @@ User.create(
     password: 'password',
     password_digest: hashed_password,
     email: Faker::Internet.email,
-    icon: "https://example.com/#{Faker::Internet.email}.png"
+    # icon: "https://example.com/#{Faker::Internet.email}.png"
   )
 end
 
