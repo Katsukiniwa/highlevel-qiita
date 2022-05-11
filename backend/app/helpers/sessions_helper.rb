@@ -12,9 +12,11 @@ module SessionsHelper
 
   def current_user
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secret_key_base.byteslice(0..31))
-    token = crypt.decrypt_and_verify session[:user_id]
-    user_id = token.gsub('user-id:', '').to_i
-    User.find(user_id)
+    if (session[:user_id])
+      token = crypt.decrypt_and_verify session[:user_id]
+      user_id = token.gsub('user-id:', '').to_i
+      User.find(user_id)
+    end
   end
 
   # 記憶トークンcookieに対応するユーザーを返す
