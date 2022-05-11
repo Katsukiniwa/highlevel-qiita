@@ -25,10 +25,10 @@ class GraphqlController < ApplicationController
   # gets current user from token stored in the session
   def current_user
     # if we want to change the sign-in strategy, this is the place to do it
-    return unless session[:token]
+    return unless session[:user_id]
 
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secret_key_base.byteslice(0..31))
-    token = crypt.decrypt_and_verify session[:token]
+    token = crypt.decrypt_and_verify session[:user_id]
     user_id = token.gsub('user-id:', '').to_i
     User.find(user_id)
   rescue ActiveSupport::MessageVerifier::InvalidSignature

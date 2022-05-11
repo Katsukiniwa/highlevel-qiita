@@ -27,9 +27,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    user = User.find(params[:id])
-    if user.update!(user_params)
-      render json: { message: 'done' }
+    if current_user.update!(user_params)
+      render json: { message: 'success' }
     else
       render json: user.errors, status: :unprocessable_entity
     end

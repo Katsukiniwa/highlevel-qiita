@@ -37,7 +37,7 @@ export default function QuestionEditPage() {
   return (
     <React.Fragment>
       <Head>
-        <title>質問を書く</title>
+        <title>質問を編集する</title>
         <meta name="description" content="write new question" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
