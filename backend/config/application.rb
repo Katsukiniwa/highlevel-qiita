@@ -48,7 +48,7 @@ module Backend
         
         resource "*",
           headers: :any,
-          methods: [:get, :post, :options, :head],
+          methods: [:get, :post, :patch, :delete, :options, :head],
           credentials: true
       end
     end
