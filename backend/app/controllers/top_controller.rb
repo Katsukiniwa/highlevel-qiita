@@ -2,6 +2,6 @@
 
 class TopController < ApplicationController
   def index
-    render json: { message: 'Hello GraphQL' }
+    render json: { message: 'Hello GraphQL!!!' }
   end
 end
