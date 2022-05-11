@@ -12,7 +12,7 @@ export default function Dashboard() {
     formData.append('user[name]', user.name)
     formData.append('user[icon]', icon as Blob)
 
-    fetch(`http://localhost:3005/users/${user.id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${user.id}`, {
       method: 'PATCH',
       headers: {
         Accept: '*/*',
