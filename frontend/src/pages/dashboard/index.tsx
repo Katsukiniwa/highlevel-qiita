@@ -22,7 +22,12 @@ export default function Dashboard() {
       body: formData,
     })
       .then((e) => {
-        alert(e.body)
+        e.json().then((result) => {
+          const user = JSON.parse(localStorage.getItem('profile') as string)
+          user.icon = result.icon
+          localStorage.setItem('profile', JSON.stringify(user))
+          alert(e.body)
+        })
       })
       .catch((e) => {
         console.error(e)

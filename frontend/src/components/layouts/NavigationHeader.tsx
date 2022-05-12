@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MouseEventHandler, useContext, useState } from 'react'
+import { MouseEventHandler, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { AuthenticationContext, LoginContext } from '../../store/AuthenticationContext'
 import { actions } from '../../module/authentication/login'
@@ -7,9 +7,20 @@ import { actions } from '../../module/authentication/login'
 export const NavigationHeader = () => {
   const loginState = useContext(AuthenticationContext)
   const loginDispatch = useContext(LoginContext)
-  const imageSrc = 'https://mdbcdn.b-cdn.net/img/new/avatars/8.webp'
+
+  /**
+   * FIXME: とりあえずこれで・・・
+   */
+  const [imageSrc, setImageSrc] = useState('https://mdbcdn.b-cdn.net/img/new/avatars/8.webp')
 
   const [openMenu, setOpenMenu] = useState(false)
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('profile') as string)
+    if (user != null && user.icon) {
+      setImageSrc(user.icon)
+    }
+  }, [])
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => {
     setOpenMenu(false)
