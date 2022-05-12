@@ -26,7 +26,7 @@ export default function Dashboard() {
           const user = JSON.parse(localStorage.getItem('profile') as string)
           user.icon = result.icon
           localStorage.setItem('profile', JSON.stringify(user))
-          alert(e.body)
+          alert('success')
         })
       })
       .catch((e) => {
@@ -50,9 +50,11 @@ export default function Dashboard() {
       <div className="p-8">
         <section>
           <h1>{user.name}</h1>
-          <p>{user.id}</p>
+          <div className="my-2">
+            <p>user_id: {user.id}</p>
+          </div>
 
-          <div>
+          <div className="my-2">
             <input
               type="file"
               onChange={(e) => {
@@ -64,8 +66,13 @@ export default function Dashboard() {
             />
           </div>
 
-          <div>
-            <button onClick={() => handleClick()}>update profile</button>
+          <div className="my-2">
+            <button
+              onClick={() => handleClick()}
+              className="my-2 px-4 py-2 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
+            >
+              更新
+            </button>
           </div>
         </section>
       </div>

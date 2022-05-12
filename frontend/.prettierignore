@@ -11,3 +11,6 @@ yarn.lock
 .env.*
 
 README.md
+
+*.graphql
+*.json

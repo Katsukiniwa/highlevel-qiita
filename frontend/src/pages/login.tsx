@@ -2,6 +2,7 @@ import { FormEvent, ReactElement, useContext, useEffect, useState } from 'react'
 import BaseLayout from '../components/layouts/BaseLayout'
 import React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext'
 import { actions } from '../module/authentication/login'
 import { useSignInUserMutation } from '../types/generated/types.d'
@@ -86,15 +87,32 @@ export default function Login() {
               }}
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
+            {/* <a
+              className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800"
+              href="#"
+            >
+              パスワードを忘れた場合
+            </a> */}
             <button
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               {loading ? 'ログイン中...' : 'ログイン'}
             </button>
+          </div>
+
+          <div className="flex flex-col justify-between my-4">
+            <Link href={{ pathname: '/signup' }} passHref>
+              <a
+                className="inline-block my-2 align-baseline text-sm text-green-500 hover:text-green-800"
+                href="#"
+              >
+                アカウントを作成する
+              </a>
+            </Link>
             <a
-              className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800"
+              className="inline-block align-baseline text-sm text-green-500 hover:text-green-800"
               href="#"
             >
               パスワードを忘れた場合

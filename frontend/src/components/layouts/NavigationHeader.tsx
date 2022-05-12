@@ -71,12 +71,6 @@ export const NavigationHeader = () => {
                       onClick={() => setOpenMenu(false)}
                       className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
                     >
-                      Your likes
-                    </a>
-                    <a
-                      onClick={() => setOpenMenu(false)}
-                      className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
-                    >
                       Help
                     </a>
                     <a
