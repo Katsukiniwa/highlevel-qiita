@@ -27,7 +27,7 @@ export const QuestionCard = ({ id, title, content }: Props) => {
             query: { id },
           }}
         >
-          <a className="md:w-1/3 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded text-sm px-3 py-2 text-center items-center">
+          <a className="md:w-1/3 mt-4 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded text-sm px-3 py-2 text-center items-center">
             Read more
           </a>
         </Link>
