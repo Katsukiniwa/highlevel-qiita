@@ -27,7 +27,7 @@ export default function CategoryDetail() {
       </Head>
 
       <main>
-        <div className="px-8 py-4 bg-green-50">
+        <div className="px-4 md:px-8 py-4 bg-green-50">
           <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             カテゴリから探す
           </h2>
@@ -37,7 +37,7 @@ export default function CategoryDetail() {
             ))}
           </div>
         </div>
-        <div className="px-8 py-4 bg-gray-100">
+        <div className="px-4 md:px-8 py-4 bg-gray-100">
           <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
             {data.categoryQuestions.category.name}の質問を探す
           </h2>
