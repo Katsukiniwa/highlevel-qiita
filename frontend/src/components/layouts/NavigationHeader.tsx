@@ -32,7 +32,7 @@ export const NavigationHeader = () => {
   }
 
   return (
-    <div className="flex justify-between sm: px-2 md:px-8 sm: py-2 py-1 items-center border-b-2 border-sky-200">
+    <div className="flex justify-between px-8 py-2 items-center border-b-2 border-sky-200">
       <Link href={{ pathname: '/' }} passHref>
         <a className="text-3xl font-bold">Sortie</a>
       </Link>

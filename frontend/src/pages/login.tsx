@@ -53,7 +53,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-1/2 mx-auto p-8">
+      <div className="w-full md:w-1/2 mx-auto p-8">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={(e) => submitLoginForm(e)}
