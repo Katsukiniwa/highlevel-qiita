@@ -16,5 +16,5 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :icon
+  attributes :id, :name, :icon, :email
 end

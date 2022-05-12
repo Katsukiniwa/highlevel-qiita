@@ -23,7 +23,21 @@ module Mutations
 
       context[:session][:user_id] = token
 
-      { user: user, token: token }
+      icon = user.icon.url.nil? ? "https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" : user.icon.url
+
+      {
+        user: {
+          id: user.id,
+          name: user.name,
+          icon: icon,
+          email: user.email,
+          created_at: user.created_at,
+          updated_at: user.updated_at,
+          votes: user.votes,
+          links: user.links,
+        },
+        token: token
+      }
     end
   end
 end
