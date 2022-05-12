@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-
   images: {
     domains: [
       'flowbite.com',
@@ -12,7 +11,6 @@ module.exports = {
       'next-rails-playground-production.s3.ap-northeast-1.amazonaws.com',
     ],
   },
-
   env: {
     // NEXT_PUBLIC_API_MOCKING: "enabled",
   },

@@ -41,16 +41,16 @@ export default function QuestionNew() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="p-4 bg-gray-100 min-h-screen">
+      <main className="p-4 bg-gray-100 ">
         <div>
-          <div className="py-4 flex flex-row justify-between">
+          <div className="py-4 flex flex-col md:flex-row justify-between">
             <input
-              className="p-2 focus:outline-none w-4/5 text-xl placeholder-gray-300 rounded-md shadow"
+              className="p-2 focus:outline-none w-full md:w-4/5 text-xl placeholder-gray-300 rounded-md shadow"
               placeholder="タイトル"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <div className="w-1/5 flex justify-end">
+            <div className="pt-8 md:py-0 w-full md:w-1/5 flex md:justify-end">
               <button className="py-2 px-4 mr-4 font-semibold rounded-lg shadow-md text-white bg-green-400 hover:bg-green-700">
                 下書き保存
               </button>
@@ -86,14 +86,14 @@ export default function QuestionNew() {
             </div>
           </div>
 
-          <div className="flex flex-row justify-between md:mx-auto">
+          <div className="flex flex-col md:flex-row justify-between md:mx-auto">
             <textarea
-              className="w-1/2 mr-8 border rounded-md p-2 outline-none min-h-screen text-xl placeholder-gray-300 shadow"
+              className="w-full md:w-1/2 mr-0 md:mr-8 border rounded-md p-2 outline-none min-h-screen text-xl placeholder-gray-300 shadow"
               placeholder="本文"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
-            <div className="w-1/2 border rounded-md p-1 bg-white shadow">
+            <div className="invisible md:visible w-full md:w-1/2 border rounded-md p-1 bg-white shadow">
               <ReactMarkdown>{content}</ReactMarkdown>
             </div>
           </div>
