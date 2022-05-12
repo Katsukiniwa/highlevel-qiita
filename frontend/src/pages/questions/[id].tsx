@@ -7,6 +7,7 @@ import { useQuestionQuery } from '../../types/generated/types.d'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import Link from 'next/link'
 
 export default function QuestionDetailPage() {
   const { query } = useRouter()
@@ -60,9 +61,16 @@ export default function QuestionDetailPage() {
                   <button>share</button>
 
                   {data.question.postedByMe && (
-                    <div>
-                      <button>編集</button>
-                    </div>
+                    <Link
+                      href={{
+                        pathname: '/questions/[id]/edit',
+                        query: { id: query.id },
+                      }}
+                    >
+                      <a>
+                        <button>編集</button>
+                      </a>
+                    </Link>
                   )}
                 </div>
               </div>
