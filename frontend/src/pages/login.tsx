@@ -56,9 +56,10 @@ export default function Login() {
 
       <div className="w-full md:w-1/2 mx-auto p-8">
         <form
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="bg-white shadow-md rounded px-8 py-4 mb-4"
           onSubmit={(e) => submitLoginForm(e)}
         >
+          <h2 className="mb-4">ログイン</h2>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
               Email
