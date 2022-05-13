@@ -19,4 +19,6 @@
 #  fk_rails_...  (tag_id => tags.id)
 #
 class Tagging < ApplicationRecord
+  belongs_to :question
+  belongs_to :tag
 end

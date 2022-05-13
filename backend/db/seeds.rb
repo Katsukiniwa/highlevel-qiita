@@ -61,6 +61,24 @@ Category.create(
   icon: 'https://example.com/functional-programming.png'
 )
 
+Tag.create(
+  name: 'Ruby',
+  name_en: 'ruby'
+)
+Tag.create(
+  name: 'Python',
+  name_en: 'python'
+)
+Tag.create(
+  name: 'PHP',
+  name_em: 'php'
+)
+Tag.create(
+  name: 'ポエム',
+  name_en: 'poem'
+)
+
+
 Category.all.each do |category|
   100.times do |i|
     Question.create(
