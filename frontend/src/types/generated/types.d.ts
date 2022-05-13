@@ -182,7 +182,7 @@ export type Question = {
   comments: Array<Comment>
   content: Scalars['String']
   createdAt: Scalars['ISO8601DateTime']
-  id: Scalars['Int']
+  id: Scalars['ID']
   postedByMe: Scalars['Boolean']
   title: Scalars['String']
   updatedAt: Scalars['ISO8601DateTime']
@@ -268,7 +268,7 @@ export type CreateQuestionMutationVariables = Exact<{
 
 export type CreateQuestionMutation = {
   __typename?: 'Mutation'
-  createQuestion?: { __typename?: 'Question'; id: number; title: string } | null
+  createQuestion?: { __typename?: 'Question'; id: string; title: string } | null
 }
 
 export type UpdateQuestionMutationVariables = Exact<{
@@ -282,7 +282,7 @@ export type UpdateQuestionMutation = {
   __typename?: 'Mutation'
   updateQuestion?: {
     __typename?: 'Question'
-    id: number
+    id: string
     title: string
     content: string
     category: { __typename?: 'Category'; id: number; name: string }
@@ -309,6 +309,23 @@ export type SignInUserMutation = {
   } | null
 }
 
+export type SignUpMutationVariables = Exact<{
+  name: Scalars['String']
+  email: Scalars['String']
+  password: Scalars['String']
+}>
+
+export type SignUpMutation = {
+  __typename?: 'Mutation'
+  signUp?: {
+    __typename?: 'User'
+    id: number
+    name: string
+    email: string
+    icon?: string | null
+  } | null
+}
+
 export type CategoriesQueryVariables = Exact<{ [key: string]: never }>
 
 export type CategoriesQuery = {
@@ -331,7 +348,7 @@ export type QuestionQuery = {
   __typename?: 'Query'
   question: {
     __typename?: 'Question'
-    id: number
+    id: string
     title: string
     content: string
     postedByMe: boolean
@@ -348,7 +365,7 @@ export type QuestionsQueryVariables = Exact<{ [key: string]: never }>
 
 export type QuestionsQuery = {
   __typename?: 'Query'
-  questions: Array<{ __typename?: 'Question'; id: number; title: string; content: string }>
+  questions: Array<{ __typename?: 'Question'; id: string; title: string; content: string }>
 }
 
 export type QuestionsPerPageQueryVariables = Exact<{
@@ -362,7 +379,7 @@ export type QuestionsPerPageQuery = {
     currentPage: number
     lastPage: number
     pageSize: number
-    questions: Array<{ __typename?: 'Question'; id: number; title: string; content: string }>
+    questions: Array<{ __typename?: 'Question'; id: string; title: string; content: string }>
   }
 }
 
@@ -379,7 +396,7 @@ export type CategoryQuestionsQuery = {
     lastPage: number
     pageSize: number
     category: { __typename?: 'Category'; id: number; name: string; nameEn: string }
-    questions: Array<{ __typename?: 'Question'; id: number; title: string; content: string }>
+    questions: Array<{ __typename?: 'Question'; id: string; title: string; content: string }>
   }
 }
 
@@ -581,6 +598,51 @@ export type SignInUserMutationResult = Apollo.MutationResult<SignInUserMutation>
 export type SignInUserMutationOptions = Apollo.BaseMutationOptions<
   SignInUserMutation,
   SignInUserMutationVariables
+>
+export const SignUpDocument = gql`
+  mutation signUp($name: String!, $email: String!, $password: String!) {
+    signUp(
+      input: { name: $name, authProvider: { credentials: { email: $email, password: $password } } }
+    ) {
+      id
+      name
+      email
+      icon
+    }
+  }
+`
+export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMutationVariables>
+
+/**
+ * __useSignUpMutation__
+ *
+ * To run a mutation, you first call `useSignUpMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSignUpMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [signUpMutation, { data, loading, error }] = useSignUpMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useSignUpMutation(
+  baseOptions?: Apollo.MutationHookOptions<SignUpMutation, SignUpMutationVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<SignUpMutation, SignUpMutationVariables>(SignUpDocument, options)
+}
+export type SignUpMutationHookResult = ReturnType<typeof useSignUpMutation>
+export type SignUpMutationResult = Apollo.MutationResult<SignUpMutation>
+export type SignUpMutationOptions = Apollo.BaseMutationOptions<
+  SignUpMutation,
+  SignUpMutationVariables
 >
 export const CategoriesDocument = gql`
   query categories {

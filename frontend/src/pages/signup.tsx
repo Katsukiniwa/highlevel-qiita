@@ -1,17 +1,52 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import BaseLayout from '../components/layouts/BaseLayout'
+import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext'
+import { actions } from '../module/authentication/login'
+import { useSignUpMutation } from '../types/generated/types.d'
+import { useRouter } from 'next/router'
 
 export default function SignUpPage() {
+  const router = useRouter()
+  const loginState = useContext(AuthenticationContext)
+  const loginDispatch = useContext(LoginContext)
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('password')
-  const [loading, setLoading] = useState(false)
 
-  const submitLoginForm = (e: React.FormEvent) => {
-    // TODO: 実装する
+  const [signUp, { loading }] = useSignUpMutation({
+    variables: {
+      name,
+      email,
+      password,
+    },
+    onCompleted: (result) => {
+      loginDispatch(actions.successLoginAction())
+      localStorage.setItem('profile', JSON.stringify(result.signUp))
+      router.push('/')
+      setTimeout(() => {
+        alert('登録しました')
+      }, 1000)
+    },
+    onError: (error) => {
+      console.error(error.message)
+    },
+  })
+
+  const submitLoginForm = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    loginDispatch(actions.startLoginAction())
+    await signUp()
   }
+
+  useEffect(() => {
+    if (loginState.login) {
+      router.push('/')
+    }
+  }, [loginState.login, router])
 
   return (
     <React.Fragment>
@@ -70,12 +105,6 @@ export default function SignUpPage() {
             />
           </div>
           <div className="flex items-center justify-center">
-            {/* <a
-              className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800"
-              href="#"
-            >
-              パスワードを忘れた場合
-            </a> */}
             <button
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
