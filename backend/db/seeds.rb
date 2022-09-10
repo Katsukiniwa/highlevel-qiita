@@ -71,7 +71,7 @@ Tag.create(
 )
 Tag.create(
   name: 'PHP',
-  name_em: 'php'
+  name_en: 'php'
 )
 Tag.create(
   name: 'ポエム',
