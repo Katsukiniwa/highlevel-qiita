@@ -28,7 +28,6 @@ services:
     depends_on:
       - db
       - redis
-    # command: ["bin/rails", "server", "-b", "0.0.0.0"]
     expose: ["3005"]
     ports: ["3005:3005"]
     user: root
@@ -36,7 +35,7 @@ services:
 
   worker:
     <<: *web
-    # command: ["bundle", "exec", "sidekiq"]
+    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec sidekiq"
     expose: []
     ports: []
 
