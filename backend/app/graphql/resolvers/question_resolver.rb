@@ -16,7 +16,7 @@ module Resolvers
         created_at: question.created_at,
         updated_at: question.updated_at,
         comments: question.comments,
-        postedByMe: question.user.id == context[:current_user].id
+        postedByMe: question.user.id == context[:current_user]&.id
       }
     end
   end
