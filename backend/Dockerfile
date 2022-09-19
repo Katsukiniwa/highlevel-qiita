@@ -1,4 +1,4 @@
-FROM ruby:3.0.2
+FROM ruby:3.0.4
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
       vim
 
 COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+# COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
 RUN rm -f tmp/pids/server.pid
