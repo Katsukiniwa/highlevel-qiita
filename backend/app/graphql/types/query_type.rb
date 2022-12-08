@@ -35,7 +35,5 @@ module Types
       Category.all.map do |category|
       end
     end
-
-    field :all_links, resolver: Resolvers::LinksSearch
   end
 end
