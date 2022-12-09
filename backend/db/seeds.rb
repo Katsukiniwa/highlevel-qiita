@@ -10,7 +10,7 @@ User.create(
   # icon: "https://example.com/katsukiniwa.png"
 )
 
-50.times do |i|
+5.times do |i|
   User.create(
     name: Faker::Name.name,
     password: 'password',
@@ -80,7 +80,7 @@ Tag.create(
 
 
 Category.all.each do |category|
-  100.times do |i|
+  10.times do |i|
     Question.create(
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
