@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext'
 import { actions } from '../module/authentication/login'
-import { useSignInUserMutation } from '../types/generated/types.d'
+import { useSignInUserMutation } from '../types/generated/type'
 import { useRouter } from 'next/router'
 
 export default function Login() {

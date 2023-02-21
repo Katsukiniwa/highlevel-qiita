@@ -3,7 +3,7 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import React, { ReactElement } from 'react'
 import { CategoryLabel } from '../components/object/CategoryLabel'
 import { QuestionCard } from '../components/object/QuestionCard'
-import { useCategoriesQuery, useQuestionsPerPageQuery } from '../types/generated/types.d'
+import { useCategoriesQuery, useQuestionsPerPageQuery } from '../types/generated/type'
 
 export default function Home() {
   const { loading, data } = useQuestionsPerPageQuery({

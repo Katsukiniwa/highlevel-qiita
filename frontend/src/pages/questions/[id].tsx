@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
 import BaseLayout from '../../components/layouts/BaseLayout'
 import { AnswerCard } from '../../components/object/AnswerCard'
-import { useQuestionQuery } from '../../types/generated/types.d'
+import { useQuestionQuery } from '../../types/generated/type'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
@@ -37,7 +37,7 @@ export default function QuestionDetailPage() {
                   // eslint-disable-next-line react/no-children-prop
                   children={data.question.content}
                   components={{
-                    code({ node, inline, className, children, ...props }) {
+                    code({ node, inline, className, children, style, ...props }) {
                       const match = /language-(\w+)/.exec(className || '')
                       return !inline && match ? (
                         <SyntaxHighlighter

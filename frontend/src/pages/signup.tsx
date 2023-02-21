@@ -4,7 +4,7 @@ import Link from 'next/link'
 import BaseLayout from '../components/layouts/BaseLayout'
 import { AuthenticationContext, LoginContext } from '../store/AuthenticationContext'
 import { actions } from '../module/authentication/login'
-import { useSignUpMutation } from '../types/generated/types.d'
+import { useSignUpMutation } from '../types/generated/type'
 import { useRouter } from 'next/router'
 
 export default function SignUpPage() {

@@ -3,7 +3,7 @@ import BaseLayout from '../../components/layouts/BaseLayout'
 import React, { MouseEventHandler, useState } from 'react'
 import type { ReactElement } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useCategoriesQuery, useCreateQuestionMutation } from '../../types/generated/types.d'
+import { useCategoriesQuery, useCreateQuestionMutation } from '../../types/generated/type'
 import { ApolloError } from '@apollo/client'
 
 export default function QuestionNew() {

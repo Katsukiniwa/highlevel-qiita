@@ -1,7 +1,0 @@
-query allLinks {
-  allLinks {
-    votes {
-      id
-    }
-  }
-}

@@ -3,7 +3,7 @@ import BaseLayout from '../../components/layouts/BaseLayout'
 import React, { ReactElement } from 'react'
 import { QuestionCard } from '../../components/object/QuestionCard'
 import { CategoryLabel } from '../../components/object/CategoryLabel'
-import { useCategoriesQuery, useCategoryQuestionsQuery } from '../../types/generated/types.d'
+import { useCategoriesQuery, useCategoryQuestionsQuery } from '../../types/generated/type'
 import { useRouter } from 'next/router'
 
 export default function CategoryDetail() {

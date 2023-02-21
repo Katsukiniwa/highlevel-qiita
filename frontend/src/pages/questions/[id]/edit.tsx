@@ -7,7 +7,7 @@ import {
   useCategoriesQuery,
   useUpdateQuestionMutation,
   useQuestionQuery,
-} from '../../../types/generated/types.d'
+} from '../../../types/generated/type'
 import { useRouter } from 'next/router'
 
 export default function QuestionEditPage() {
