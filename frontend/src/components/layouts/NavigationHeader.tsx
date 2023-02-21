@@ -33,8 +33,8 @@ export const NavigationHeader = () => {
 
   return (
     <div className="flex justify-between px-4 md:px-8 py-2 items-center">
-      <Link href={{ pathname: '/' }} passHref>
-        <a className="text-3xl font-bold">Sortie</a>
+      <Link href={{ pathname: '/' }} passHref className="text-3xl font-bold">
+        Sortie
       </Link>
 
       <div>
@@ -59,13 +59,13 @@ export const NavigationHeader = () => {
 
                 {openMenu && (
                   <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-2xl z-20">
-                    <Link href={{ pathname: '/dashboard' }} passHref>
-                      <a
-                        onClick={() => setOpenMenu(false)}
-                        className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
-                      >
-                        Dashboard
-                      </a>
+                    <Link
+                      href={{ pathname: '/dashboard' }}
+                      passHref
+                      onClick={() => setOpenMenu(false)}
+                      className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
+                    >
+                      Dashboard
                     </Link>
                     <a
                       onClick={() => setOpenMenu(false)}
@@ -93,7 +93,7 @@ export const NavigationHeader = () => {
             </div>
 
             <div className="flex items-center">
-              <Link href={{ pathname: '/questions/new' }} passHref>
+              <Link href={{ pathname: '/questions/new' }} passHref legacyBehavior>
                 <button className="px-4 font-semibold rounded shadow-md text-white bg-green-500 hover:bg-green-700 h-4/5">
                   質問する
                 </button>
@@ -101,7 +101,7 @@ export const NavigationHeader = () => {
             </div>
           </div>
         ) : (
-          <Link href={{ pathname: '/login' }} passHref>
+          <Link href={{ pathname: '/login' }} passHref legacyBehavior>
             <button className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
               ログイン
             </button>

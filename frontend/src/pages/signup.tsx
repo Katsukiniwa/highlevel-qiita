@@ -114,13 +114,12 @@ export default function SignUpPage() {
           </div>
 
           <div className="flex flex-col justify-between my-4">
-            <Link href={{ pathname: '/login' }} passHref>
-              <a
-                className="inline-block mt-2 align-baseline text-sm text-green-500 hover:text-green-800"
-                href="#"
-              >
-                アカウントをお持ちの場合
-              </a>
+            <Link
+              href={{ pathname: '/login' }}
+              passHref
+              className="inline-block mt-2 align-baseline text-sm text-green-500 hover:text-green-800"
+            >
+              アカウントをお持ちの場合
             </Link>
           </div>
         </form>

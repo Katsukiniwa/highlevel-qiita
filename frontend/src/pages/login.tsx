@@ -104,13 +104,12 @@ export default function Login() {
           </div>
 
           <div className="flex flex-col justify-between my-4">
-            <Link href={{ pathname: '/signup' }} passHref>
-              <a
-                className="inline-block my-2 align-baseline text-sm text-green-500 hover:text-green-800"
-                href="#"
-              >
-                アカウントを作成する
-              </a>
+            <Link
+              href={{ pathname: '/signup' }}
+              passHref
+              className="inline-block my-2 align-baseline text-sm text-green-500 hover:text-green-800"
+            >
+              アカウントを作成する
             </Link>
             <a
               className="inline-block align-baseline text-sm text-green-500 hover:text-green-800"

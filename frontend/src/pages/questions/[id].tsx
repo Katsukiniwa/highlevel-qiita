@@ -67,9 +67,7 @@ export default function QuestionDetailPage() {
                         query: { id: query.id },
                       }}
                     >
-                      <a>
-                        <button>編集</button>
-                      </a>
+                      <button>編集</button>
                     </Link>
                   )}
                 </div>
