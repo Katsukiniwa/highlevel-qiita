@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactChild, useReducer } from 'react'
+import { createContext, Dispatch, ReactElement, useReducer } from 'react'
 import {
   QuestionActionType,
   QuestionReducer,
@@ -15,7 +15,7 @@ export const QuestionUpdateContext = createContext<Dispatch<QuestionActionType>>
 
 export const initialAuthenticationState = { isLoading: false, questions: [], error: null }
 
-export function QuestionContextProvider({ children }: { children: ReactChild }) {
+export function QuestionContextProvider({ children }: { children: ReactElement }) {
   const [questions, questionDispatch] = useReducer(QuestionReducer, initialAuthenticationState)
 
   return (

@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 
-import { ReactChild, ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { AuthenticationContextProvider } from '../store/AuthenticationContext'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import type { NextPage } from 'next'
@@ -8,7 +8,7 @@ import type { AppProps } from 'next/app'
 import { QuestionContextProvider } from '../store/QuestionContext'
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactChild
+  getLayout?: (page: ReactElement) => ReactElement
 }
 
 type AppPropsWithLayout = AppProps & {

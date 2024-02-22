@@ -31,7 +31,7 @@ export const useLogin = (): [LoginState, () => void] => {
     }
 
     runLogin()
-  }, [refetchIndex])
+  }, [refetchIndex, dispatch])
 
   return [loginState, refetch]
 }

@@ -5,7 +5,7 @@ import BaseLayout from '../../components/layouts/BaseLayout'
 import { AnswerCard } from '../../components/object/AnswerCard'
 import { useQuestionQuery } from '../../types/generated/type'
 import ReactMarkdown from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Prism } from 'react-syntax-highlighter'
 import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import Link from 'next/link'
 
@@ -34,28 +34,23 @@ export default function QuestionDetailPage() {
               <div className="bg-white p-4 md:mr-8">
                 <h1>{data.question.title}</h1>
                 <ReactMarkdown
-                  // eslint-disable-next-line react/no-children-prop
-                  children={data.question.content}
                   components={{
-                    code({ node, inline, className, children, style, ...props }) {
+                    code({ children, className, ref, ...rest }) {
                       const match = /language-(\w+)/.exec(className || '')
-                      return !inline && match ? (
-                        <SyntaxHighlighter
-                          // eslint-disable-next-line react/no-children-prop
-                          children={String(children).replace(/\n$/, '')}
-                          style={darcula}
-                          language={match[1]}
-                          PreTag="div"
-                          {...props}
-                        />
+                      return match ? (
+                        <Prism {...rest} PreTag="div" language={match[1]} style={darcula}>
+                          {String(children).replace(/\n$/, '')}
+                        </Prism>
                       ) : (
-                        <code className={className} {...props}>
+                        <code {...rest} className={className}>
                           {children}
                         </code>
                       )
                     },
                   }}
-                />
+                >
+                  {data.question.content}
+                </ReactMarkdown>
 
                 <div className="flex justify-between">
                   <button>share</button>
