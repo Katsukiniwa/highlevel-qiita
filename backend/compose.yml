@@ -28,8 +28,8 @@ services:
     depends_on:
       - db
       - redis
-    expose: ["3005"]
-    ports: ["3005:3005"]
+    expose: ["3000"]
+    ports: ["3000:3000"]
     user: root
     working_dir: /app
 
