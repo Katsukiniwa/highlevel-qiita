@@ -1,14 +1,14 @@
 version: "3.8"
 services:
   db:
-    image: postgres:14-alpine
+    image: postgres:16-alpine
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
 
   redis:
-    image: redis:6-alpine
+    image: redis:7-alpine
     volumes:
       - redis:/data
 
@@ -36,8 +36,8 @@ services:
   worker:
     <<: *web
     command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec sidekiq"
-    expose: []
-    ports: []
+    expose: ["6379"]
+    ports: ["6379:6379"]
 
 volumes:
   postgres:

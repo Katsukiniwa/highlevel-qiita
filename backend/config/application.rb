@@ -22,7 +22,7 @@ Bundler.require(*Rails.groups)
 module Backend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -45,7 +45,7 @@ module Backend
       allow do
         # origins "*"
         origins '127.0.0.1:8080', 'localhost:8080', 'https://next-rails-playground.vercel.app'
-        
+
         resource "*",
           headers: :any,
           methods: [:get, :post, :patch, :delete, :options, :head],
