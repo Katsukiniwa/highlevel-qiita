@@ -1,4 +1,5 @@
 export const getCategories = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 3000))
   const res = await fetch('http://localhost:3000/categories', {
     method: "GET",
     headers: {
@@ -38,7 +39,7 @@ export const getQuestions = async () => {
     }
   }).then(res => res.json())
 
-  return res as {
+  return res.filter((_: any, index: number) => index < 6) as {
     id: number,
     title: string,
     content: string

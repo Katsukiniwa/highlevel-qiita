@@ -43,6 +43,9 @@ export const NavigationHeader = () => {
             <div className="">
               <div className="relative">
                 <button
+                  type="button"
+                  role="button"
+                  title="button"
                   onClick={() => setOpenMenu(!openMenu)}
                   className="rounded-md bg-white focus:outline-none"
                 >

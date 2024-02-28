@@ -18,7 +18,7 @@ export const QuestionCard = ({ id, title, content }: Props) => {
         <p className="font-normal text-gray-700">{content}</p>
         <Link
           href={`/questions/${id}`}
-          className="md:w-1/3 mt-4 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded text-sm px-3 py-2 text-center items-center"
+          className="md:w-1/2 mt-4 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded text-sm px-3 py-2 text-center items-center"
         >
           Read more
         </Link>

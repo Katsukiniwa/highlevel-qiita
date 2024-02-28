@@ -2,13 +2,15 @@ import { CategoryLabel } from "@/components/CategoryLabel";
 import { QuestionCard } from "@/components/QuestionCard";
 import { getCategories, getQuestions } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const categories = await getCategories();
   const questions = await getQuestions();
 
   return (
-    <div>
-      <div className="px-4 md:px-8 py-4 bg-green-50">
+    <div className="col-span-9 sm:col-span-7">
+      <div className="px-4 md:px-8 py-4 bg-green-50 rounded-xl mb-4">
         <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
           カテゴリから探す
         </h2>
@@ -18,7 +20,8 @@ export default async function Home() {
           ))}
         </div>
       </div>
-      <div className="px-4 md:px-8 py-4 bg-gray-100">
+
+      <div className="px-4 md:px-8 py-4 bg-gray-100 rounded-xl mb-4">
         <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
           人気の質問から探す
         </h2>
@@ -33,7 +36,7 @@ export default async function Home() {
           ))}
         </div>
       </div>
-      <div className="px-4 md:px-8 py-4 bg-gray-100">
+      <div className="px-4 md:px-8 py-4 bg-gray-100 rounded-xl">
         <h2 className="my-4 pl-3 text-xl font-bold border-l-4 border-green-300">
           最新の質問から探す
         </h2>
