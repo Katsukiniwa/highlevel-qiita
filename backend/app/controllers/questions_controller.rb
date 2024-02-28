@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   def index
     @questions = Question.all
+    @questions = Question.where(category_id: params['category_id']) if params['category_id'].present?
 
     render json: @questions
   end

@@ -11,9 +11,23 @@ export const getCategories = async () => {
     name: string,
     name_en: string,
     icon: string,
-    created_at: Date,
-    updated_at: Date,
   }[]
+}
+
+export const getCategoryById = async (id: number) => {
+  const res = await fetch(`http://localhost:3000/categories/${id}`, {
+    method: "GET",
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(res => res.json())
+
+  return res as {
+    id: number,
+    name: string,
+    name_en: string,
+    icon: string,
+  }
 }
 
 export const getQuestions = async () => {
@@ -48,4 +62,23 @@ export const getQuestionById = async (id: number) => {
     content: string
     postedByMe: boolean
   }
+}
+
+export const getQuestionsByCategoryId = async (id: number) => {
+  const res = await fetch(`http://localhost:3000/categories/${id}/questions`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(res => res.json())
+
+  // FIXME
+  res.postedByMe = false
+
+  return res as {
+    id: number,
+    title: string,
+    content: string
+    postedByMe: boolean
+  }[]
 }

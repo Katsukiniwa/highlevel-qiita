@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
-  end  
+  end
   post "/graphql", to: "graphql#execute"
 
   root 'top#index'
@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :favorite_questions
   resources :draft_questions
   resources :tags
-  resources :categories
+  resources :categories do
+    resources :questions, only: [:index]
+  end
   resources :users
   resources :questions
 
