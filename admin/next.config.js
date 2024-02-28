@@ -1,3 +1,6 @@
+const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
+const withVanillaExtract = createVanillaExtractPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -8,8 +11,20 @@ const nextConfig = {
         port: "",
         // pathname: '',
       },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+        port: "",
+        // pathname: '',
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        port: "",
+        // pathname: '',
+      },
     ],
   },
 };
 
-module.exports = nextConfig;
+module.exports = withVanillaExtract(nextConfig);
