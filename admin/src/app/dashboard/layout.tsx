@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import { NavigationHeader } from "@/components/NavigationHeader";
 import { Sidebar } from "@/components/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,24 +13,22 @@ export default function Layout({
   analytics,
   children,
   customers,
-  questions,
-}: Readonly<{
+}: // questions,
+Readonly<{
   analytics: React.ReactNode;
   children: React.ReactNode;
   customers: React.ReactNode;
-  questions: React.ReactNode;
+  // questions: React.ReactNode;
 }>) {
   return (
     <div className="grid grid-cols-9 gap-4 p-4 bg-gray-50 min-h-dvh">
       <Sidebar />
       <div className="col-span-7">
         {children}
-        <div className="grid grid-cols-4 gap-4">
-          <div className="col-span-2">
-            {analytics}
-            {customers}
-          </div>
-          <div className="col-span-2">{questions}</div>
+        <div className="grid grid-cols-6 gap-4">
+          <div className="col-span-2">{customers}</div>
+          <div className="col-span-2">{analytics}</div>
+          {/* <div className="col-span-2">{questions}</div> */}
         </div>
       </div>
     </div>

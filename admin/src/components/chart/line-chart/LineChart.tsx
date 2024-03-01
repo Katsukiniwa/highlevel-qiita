@@ -26,8 +26,8 @@ console.error = (...args: any) => {
 export const LineChart: FC<Props> = ({ data }) => {
   return (
     <PrimitiveLineChart
-      width={540}
-      height={360}
+      width={300}
+      height={200}
       data={data}
       margin={{ top: 20, right: 0, bottom: 20, left: 20 }}
     >

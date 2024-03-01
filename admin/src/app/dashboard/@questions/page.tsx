@@ -16,7 +16,7 @@ export default async function Page() {
           <Table.Row>
             <Table.ColumnHeaderCell>id</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>title</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>content</Table.ColumnHeaderCell>
+            {/* <Table.ColumnHeaderCell>content</Table.ColumnHeaderCell> */}
           </Table.Row>
         </Table.Header>
 
@@ -27,7 +27,7 @@ export default async function Page() {
                 <Link href={`/dashboard/${question.id}`}>{question.id}</Link>
               </Table.RowHeaderCell>
               <Table.Cell>{question.title}</Table.Cell>
-              <Table.Cell>{question.content}</Table.Cell>
+              {/* <Table.Cell>{question.content}</Table.Cell> */}
             </Table.Row>
           ))}
         </Table.Body>
