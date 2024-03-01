@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export const Sidebar = () => {
   return (
@@ -144,5 +144,5 @@ export const Sidebar = () => {
         </div>
       </nav>
     </div>
-  );
-};
+  )
+}

@@ -1,8 +1,8 @@
-import { getChartRandomData } from "@/lib/data";
-import { Table, Heading } from "@radix-ui/themes";
+import { getChartRandomData } from '@/lib/data'
+import { Table, Heading } from '@radix-ui/themes'
 
 export default async function Page() {
-  const dataList = await getChartRandomData();
+  const dataList = await getChartRandomData()
 
   return (
     <div className="bg-red-200 p-4 rounded-xl">
@@ -27,5 +27,5 @@ export default async function Page() {
         </Table.Body>
       </Table.Root>
     </div>
-  );
+  )
 }

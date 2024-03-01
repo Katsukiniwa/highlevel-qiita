@@ -1,0 +1,17 @@
+node_modules/
+.husky
+.next
+public
+
+.next-env.d.ts
+tsconfig.json
+package.json
+package-lock.json
+yarn.lock
+.env.*
+
+README.md
+
+*.graphql
+*.json
+*.yaml

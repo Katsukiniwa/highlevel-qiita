@@ -1,6 +1,6 @@
 // import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic'
 
 export default function Dashboard() {
   // return (
@@ -9,5 +9,5 @@ export default function Dashboard() {
   //     <Link href="/">top</Link>
   //   </div>
   // );
-  return null;
+  return null
 }

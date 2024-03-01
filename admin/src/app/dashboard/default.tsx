@@ -3,5 +3,5 @@ export default function Default() {
     <div>
       <h1>Dashboard Default</h1>
     </div>
-  );
+  )
 }

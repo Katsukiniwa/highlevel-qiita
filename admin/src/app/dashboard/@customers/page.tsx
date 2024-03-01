@@ -1,9 +1,9 @@
-import { getCustomers } from "@/lib/data";
-import { Heading, Table } from "@radix-ui/themes";
+import { getCustomers } from '@/lib/data'
+import { Heading, Table } from '@radix-ui/themes'
 
 export default async function Page() {
-  const customers = await getCustomers();
-  const roles = ["Developer", "Admin", "Sales"];
+  const customers = await getCustomers()
+  const roles = ['Developer', 'Admin', 'Sales']
 
   return (
     <div className="bg-yellow-200 p-4 rounded-xl">
@@ -28,5 +28,5 @@ export default async function Page() {
         </Table.Body>
       </Table.Root>
     </div>
-  );
+  )
 }

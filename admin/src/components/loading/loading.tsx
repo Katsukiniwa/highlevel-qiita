@@ -22,5 +22,5 @@ export default function Loading() {
       </svg>
       <span className="sr-only">Loading top page...</span>
     </div>
-  );
+  )
 }

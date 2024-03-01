@@ -1,15 +1,15 @@
-import { CategoryLabel } from "@/components/CategoryLabel";
-import { NavigationHeader } from "@/components/NavigationHeader";
-import { QuestionCard } from "@/components/QuestionCard";
-import { Sidebar } from "@/components/Sidebar";
-import { getCategories, getQuestions } from "@/lib/data";
-import Link from "next/link";
+import { CategoryLabel } from '@/components/CategoryLabel'
+import { NavigationHeader } from '@/components/NavigationHeader'
+import { QuestionCard } from '@/components/QuestionCard'
+import { Sidebar } from '@/components/Sidebar'
+import { getCategories, getQuestions } from '@/lib/data'
+import Link from 'next/link'
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-  const categories = await getCategories();
-  const questions = await getQuestions();
+  const categories = await getCategories()
+  const questions = await getQuestions()
 
   return (
     <div>
@@ -61,5 +61,5 @@ export default async function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }

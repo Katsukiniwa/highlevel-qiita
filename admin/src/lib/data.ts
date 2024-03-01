@@ -1,7 +1,7 @@
-import { PokemonDetail } from "@/types"
+import { PokemonDetail } from '@/types'
 
 export const getChartRandomData = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 10 * 1000));
+  await new Promise((resolve) => setTimeout(resolve, 10 * 1000))
   const data = [
     {
       name: 'Page A',
@@ -39,22 +39,22 @@ export const getChartRandomData = async () => {
       pv: 3800,
       amt: 2500,
     },
-  ];
+  ]
 
   // throw new Error('random error')
 
-  return data;
+  return data
 }
 
 export const getCustomers = async () => {
   const res = await fetch('http://localhost:3000/users', {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
-  await new Promise((resolve) => setTimeout(resolve, 7 * 1000));
+  await new Promise((resolve) => setTimeout(resolve, 7 * 1000))
 
   return res as {
     id: number
@@ -67,32 +67,32 @@ export const getPokemonList = async () => {
   const res = await fetch('https://pokeapi.co/api/v2/pokemon', {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
   // await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return res as {
-    count: number,
-    next: string,
-    previous: string,
+    count: number
+    next: string
+    previous: string
     results: {
-      name: string,
+      name: string
       url: string
     }[]
   }
 }
 
 export const getPokemonDetail = async (id: number) => {
-  await new Promise((resolve) => setTimeout(resolve, id * 300));
+  await new Promise((resolve) => setTimeout(resolve, id * 300))
 
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
   return res as PokemonDetail
 }
@@ -100,33 +100,33 @@ export const getPokemonDetail = async (id: number) => {
 export const getCategories = async () => {
   await new Promise((resolve) => setTimeout(resolve, 3000))
   const res = await fetch('http://localhost:3000/categories', {
-    method: "GET",
+    method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
   return res as {
-    id: number,
-    name: string,
-    name_en: string,
-    icon: string,
+    id: number
+    name: string
+    name_en: string
+    icon: string
   }[]
 }
 
 export const getCategoryById = async (id: number) => {
   const res = await fetch(`http://localhost:3000/categories/${id}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
   return res as {
-    id: number,
-    name: string,
-    name_en: string,
-    icon: string,
+    id: number
+    name: string
+    name_en: string
+    icon: string
   }
 }
 
@@ -134,15 +134,15 @@ export const getQuestions = async () => {
   const res = await fetch('http://localhost:3000/questions', {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
-  await new Promise((resolve) => setTimeout(resolve, 15 * 1000));
+  await new Promise((resolve) => setTimeout(resolve, 15 * 1000))
 
   return res.filter((_: any, index: number) => index < 6) as {
-    id: number,
-    title: string,
+    id: number
+    title: string
     content: string
   }[]
 }
@@ -151,16 +151,16 @@ export const getQuestionById = async (id: number) => {
   const res = await fetch(`http://localhost:3000/questions/${id}`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
   // FIXME
   res.postedByMe = false
 
   return res as {
-    id: number,
-    title: string,
+    id: number
+    title: string
     content: string
     postedByMe: boolean
   }
@@ -170,16 +170,16 @@ export const getQuestionsByCategoryId = async (id: number) => {
   const res = await fetch(`http://localhost:3000/categories/${id}/questions`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json())
+      Accept: 'application/json',
+    },
+  }).then((res) => res.json())
 
   // FIXME
   res.postedByMe = false
 
   return res as {
-    id: number,
-    title: string,
+    id: number
+    title: string
     content: string
     postedByMe: boolean
   }[]

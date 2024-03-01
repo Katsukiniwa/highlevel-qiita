@@ -1,14 +1,14 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
 
 export async function NavigationHeader(): Promise<JSX.Element> {
   const session = {
     user: null,
-  };
+  }
 
   return (
     <header className="flex justify-between px-4 md:px-8 py-2 items-center">
-      <Link className="text-3xl font-bold" href={{ pathname: "/" }} passHref>
+      <Link className="text-3xl font-bold" href={{ pathname: '/' }} passHref>
         Admin
       </Link>
 
@@ -34,7 +34,7 @@ export async function NavigationHeader(): Promise<JSX.Element> {
               <div className="hidden group-hover:block hover:block absolute right-0 w-48 bg-white rounded-md shadow-2xl z-20">
                 <Link
                   className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-green-100"
-                  href={{ pathname: "/dashboard" }}
+                  href={{ pathname: '/dashboard' }}
                   passHref
                 >
                   Dashboard
@@ -81,5 +81,5 @@ export async function NavigationHeader(): Promise<JSX.Element> {
         </div>
       </div>
     </header>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { FC } from "react";
+import { FC } from 'react'
 import {
   LineChart as PrimitiveLineChart,
   Line,
@@ -8,20 +8,20 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-} from "recharts";
+} from 'recharts'
 
 type Props = {
-  data: any[];
-};
+  data: any[]
+}
 
 // Override console.error
 // This is a hack to suppress the warning about missing defaultProps in recharts library as of version 2.12
 // @link https://github.com/recharts/recharts/issues/3615
-const error = console.error;
+const error = console.error
 console.error = (...args: any) => {
-  if (/defaultProps/.test(args[0])) return;
-  error(...args);
-};
+  if (/defaultProps/.test(args[0])) return
+  error(...args)
+}
 
 export const LineChart: FC<Props> = ({ data }) => {
   return (
@@ -37,5 +37,5 @@ export const LineChart: FC<Props> = ({ data }) => {
       <YAxis />
       <Tooltip />
     </PrimitiveLineChart>
-  );
-};
+  )
+}

@@ -1,9 +1,9 @@
-import { getQuestions } from "@/lib/data";
-import { Table, Heading } from "@radix-ui/themes";
-import Link from "next/link";
+import { getQuestions } from '@/lib/data'
+import { Table, Heading } from '@radix-ui/themes'
+import Link from 'next/link'
 
 export default async function Page() {
-  const questions = await getQuestions();
+  const questions = await getQuestions()
 
   return (
     <div className="bg-sky-200 p-4 rounded-xl">
@@ -33,5 +33,5 @@ export default async function Page() {
         </Table.Body>
       </Table.Root>
     </div>
-  );
+  )
 }

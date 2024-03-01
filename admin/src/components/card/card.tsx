@@ -1,17 +1,17 @@
-import Link from "next/link";
-import Image from "next/image";
-import { FC } from "react";
-import "./card.css";
-import { getPokemonDetail } from "@/lib/data";
+import Link from 'next/link'
+import Image from 'next/image'
+import { FC } from 'react'
+import './card.css'
+import { getPokemonDetail } from '@/lib/data'
 
 type PokemonCardProps = {
-  name: string;
-  url: string;
-};
+  name: string
+  url: string
+}
 
 export const PokemonCard: FC<PokemonCardProps> = async ({ name, url }) => {
-  const id = url.match(/\/(\d+)\/$/) || ({} as RegExpExecArray);
-  const pokemon = await getPokemonDetail(Number(id[1]));
+  const id = url.match(/\/(\d+)\/$/) || ({} as RegExpExecArray)
+  const pokemon = await getPokemonDetail(Number(id[1]))
 
   return (
     <div>
@@ -29,5 +29,5 @@ export const PokemonCard: FC<PokemonCardProps> = async ({ name, url }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

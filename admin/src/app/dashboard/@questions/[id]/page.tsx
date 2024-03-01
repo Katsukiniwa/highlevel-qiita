@@ -1,9 +1,9 @@
-import { getQuestionsByCategoryId } from "@/lib/data";
-import { Table, Heading } from "@radix-ui/themes";
-import Link from "next/link";
+import { getQuestionsByCategoryId } from '@/lib/data'
+import { Table, Heading } from '@radix-ui/themes'
+import Link from 'next/link'
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const questions = await getQuestionsByCategoryId(Number(params.id));
+  const questions = await getQuestionsByCategoryId(Number(params.id))
 
   return (
     <div className="bg-sky-200 p-4 rounded-xl">
@@ -29,5 +29,5 @@ export default async function Page({ params }: { params: { id: string } }) {
         </Table.Body>
       </Table.Root>
     </div>
-  );
+  )
 }

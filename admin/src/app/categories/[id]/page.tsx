@@ -1,14 +1,10 @@
-import { QuestionCard } from "@/components/QuestionCard";
-import { getCategoryById, getQuestionsByCategoryId } from "@/lib/data";
-import React from "react";
+import { QuestionCard } from '@/components/QuestionCard'
+import { getCategoryById, getQuestionsByCategoryId } from '@/lib/data'
+import React from 'react'
 
-export default async function CategoryDetail({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const category = await getCategoryById(Number(params.id));
-  const questions = await getQuestionsByCategoryId(Number(params.id));
+export default async function CategoryDetail({ params }: { params: { id: string } }) {
+  const category = await getCategoryById(Number(params.id))
+  const questions = await getQuestionsByCategoryId(Number(params.id))
 
   return (
     <main>
@@ -28,5 +24,5 @@ export default async function CategoryDetail({
         </div>
       </div>
     </main>
-  );
+  )
 }

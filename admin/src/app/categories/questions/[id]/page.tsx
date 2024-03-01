@@ -1,16 +1,12 @@
-import ReactMarkdown from "react-markdown";
-import { Prism } from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import Link from "next/link";
-import { getQuestionById } from "@/lib/data";
-import { AnswerCard } from "@/components/AnswerCard";
+import ReactMarkdown from 'react-markdown'
+import { Prism } from 'react-syntax-highlighter'
+import { darcula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import Link from 'next/link'
+import { getQuestionById } from '@/lib/data'
+import { AnswerCard } from '@/components/AnswerCard'
 
-export default async function QuestionDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const question = await getQuestionById(Number(params.id));
+export default async function QuestionDetailPage({ params }: { params: { id: string } }) {
+  const question = await getQuestionById(Number(params.id))
 
   return (
     <main className="">
@@ -22,21 +18,16 @@ export default async function QuestionDetailPage({
               <ReactMarkdown
                 components={{
                   code({ children, className, ref, ...rest }) {
-                    const match = /language-(\w+)/.exec(className || "");
+                    const match = /language-(\w+)/.exec(className || '')
                     return match ? (
-                      <Prism
-                        {...rest}
-                        PreTag="div"
-                        language={match[1]}
-                        style={darcula}
-                      >
-                        {String(children).replace(/\n$/, "")}
+                      <Prism {...rest} PreTag="div" language={match[1]} style={darcula}>
+                        {String(children).replace(/\n$/, '')}
                       </Prism>
                     ) : (
                       <code {...rest} className={className}>
                         {children}
                       </code>
-                    );
+                    )
                   },
                 }}
               >
@@ -74,5 +65,5 @@ export default async function QuestionDetailPage({
         </div>
       </div>
     </main>
-  );
+  )
 }

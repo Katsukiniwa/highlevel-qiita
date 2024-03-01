@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 interface Props {
-  id: string;
-  title: string;
-  content: string;
+  id: string
+  title: string
+  content: string
 }
 
 export const QuestionCard = ({ id, title, content }: Props) => {
@@ -11,9 +11,7 @@ export const QuestionCard = ({ id, title, content }: Props) => {
     <div className="col-span-1 flex flex-col bg-white shadow-md border border-gray-200 rounded-lg p-5">
       <div className="h-full flex flex-col justify-around">
         <Link href={`/questions/${id}`}>
-          <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
-            {title}
-          </h5>
+          <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">{title}</h5>
         </Link>
         <p className="font-normal text-gray-700">{content}</p>
         <Link
@@ -24,5 +22,5 @@ export const QuestionCard = ({ id, title, content }: Props) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
