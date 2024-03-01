@@ -1,7 +1,7 @@
 import { PokemonDetail } from '@/types'
 
 export const getChartRandomData = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 10 * 1000))
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 2000))
   const data = [
     {
       name: 'Page A',
@@ -39,6 +39,18 @@ export const getChartRandomData = async () => {
       pv: 3800,
       amt: 2500,
     },
+    {
+      name: 'Page G',
+      uv: 1890 * Math.random(),
+      pv: 4800,
+      amt: 2181,
+    },
+    {
+      name: 'Page H',
+      uv: 2390 * Math.random(),
+      pv: 3800,
+      amt: 2500,
+    },
   ]
 
   // throw new Error('random error')
@@ -54,7 +66,7 @@ export const getCustomers = async () => {
     },
   }).then((res) => res.json())
 
-  await new Promise((resolve) => setTimeout(resolve, 7 * 1000))
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 4000))
 
   return res as {
     id: number
@@ -138,7 +150,7 @@ export const getQuestions = async () => {
     },
   }).then((res) => res.json())
 
-  await new Promise((resolve) => setTimeout(resolve, 15 * 1000))
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 1000))
 
   return res.filter((_: any, index: number) => index < 6) as {
     id: number

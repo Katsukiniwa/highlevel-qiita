@@ -10,15 +10,17 @@ export const metadata: Metadata = {
 }
 
 export default function Layout({
-  analytics,
+  sales,
+  books,
   children,
   customers,
-}: // questions,
-Readonly<{
-  analytics: React.ReactNode
+  questions,
+}: Readonly<{
+  sales: React.ReactNode
+  books: React.ReactNode
   children: React.ReactNode
   customers: React.ReactNode
-  // questions: React.ReactNode;
+  questions: React.ReactNode
 }>) {
   return (
     <div className="grid grid-cols-9 gap-4 p-4 bg-gray-50 min-h-dvh">
@@ -26,9 +28,12 @@ Readonly<{
       <div className="col-span-7">
         {children}
         <div className="grid grid-cols-6 gap-4">
-          <div className="col-span-2">{customers}</div>
-          <div className="col-span-2">{analytics}</div>
-          {/* <div className="col-span-2">{questions}</div> */}
+          <div className="col-span-2">
+            {customers}
+            {books}
+          </div>
+          <div className="col-span-2">{sales}</div>
+          <div className="col-span-2">{questions}</div>
         </div>
       </div>
     </div>
