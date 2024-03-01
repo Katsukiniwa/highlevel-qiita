@@ -1,7 +1,7 @@
 import { PokemonDetail } from '@/types'
 
 export const getChartRandomData = async () => {
-  await new Promise((resolve) => setTimeout(resolve, Math.random() * 2000))
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 4 * 2000))
   const data = [
     {
       name: 'Page A',
@@ -66,7 +66,7 @@ export const getCustomers = async () => {
     },
   }).then((res) => res.json())
 
-  await new Promise((resolve) => setTimeout(resolve, Math.random() * 4000))
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 4 * 1000))
 
   return res as {
     id: number
@@ -150,7 +150,7 @@ export const getQuestions = async () => {
     },
   }).then((res) => res.json())
 
-  await new Promise((resolve) => setTimeout(resolve, Math.random() * 1000))
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 4 * 1000))
 
   return res.filter((_: any, index: number) => index < 6) as {
     id: number
